@@ -2,6 +2,8 @@
 .w3-container {
     padding: 5px 20px 10px 20px;
     margin: 20px 20px 10px 20px;
+    background: #F3F6FA;
+    min-height: 500px;
 }
 .w3-border {
     border: 3px solid ;

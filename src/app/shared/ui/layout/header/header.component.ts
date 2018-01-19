@@ -3,19 +3,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: []
+  styles: ['.subnav{background: #DDDDDD;}']
 })
 export class HeaderComponent {
   
   headerLinks = [
-    { link: ['/', 'home'], icon: 'home'},
+    { link: ['/', 'admin'], icon: 'home'},
     { link: ['/', 'settings'], icon: 'cog'},
   ];
 
   subLinks = [
-    { link : ['/', 'home'], label: 'Dashboard' },
-    { link : ['/', 'student'], label: 'Manage Student' },
-    { link : ['/', 'course'], label: 'Manage Course' },
+    { link : ['/', 'admin', 'student'], label: 'Manage Student' },
+    { link : ['/', 'admin','course'], label: 'Manage Course' },
+    { link : ['/', 'admin', 'reports'], label: 'Reports' },
+    { link : ['/', 'student'], label: 'Student View' },
   ];
 
 

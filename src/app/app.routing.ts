@@ -1,17 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPageComponent } from './pages/admin-page/admin-page.component'
-import { StudentPageComponent } from './pages/student-page/student-page.component'
 
-const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: AdminPageComponent },
-  { path: 'admin', component: AdminPageComponent },
-  { path: 'student', component: StudentPageComponent }
-];
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 
+const appRoutes: Routes = [
+  { 
+    path: '', redirectTo: 'admin', pathMatch: 'full' 
+  },
+  {
+    path: 'admin',
+    loadChildren: './pages/admin-page/admin-page.module#AdminPageModule'
+  },
+  {
+      path: 'student',
+      loadChildren: 'app/pages/student-page/student-page.module#StudentPageModule'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent 
+  }
+ ];
+ 
 @NgModule({
-  exports: [ RouterModule ],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
