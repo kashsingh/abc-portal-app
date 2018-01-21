@@ -1,6 +1,7 @@
 <div class="content-container">
   <div class="content-area">
+    <alert></alert>
     <router-outlet></router-outlet>
   </div>
-  <app-sidebar class="sidenav"></app-sidebar>
+  <app-sidebar class="sidenav" *ngIf="auth.isAuthenticated()"></app-sidebar>
 </div>

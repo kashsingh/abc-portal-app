@@ -9,21 +9,38 @@ import { UiModule } from './shared/ui/ui.module';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { LoginComponent } from './shared/login/login.component';
+import { AuthGuard } from './shared/_guards/auth.guard';
+import { AuthenticationService } from './shared/_services/index';
+import { JwtInterceptor } from './shared/_guards/jwt.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     ClarityModule.forRoot(),
     UiModule,
+    FormsModule,
+    HttpClientModule,
     //AdminPageModule,
     //StudentPageModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: JwtInterceptor,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../../../_services/index';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styles: ['.subnav{background: #DDDDDD;}']
 })
 export class HeaderComponent {
+  constructor(public auth: AuthenticationService) { }
   
   headerLinks = [
     { link: ['/', 'admin'], icon: 'home'},
@@ -19,5 +21,8 @@ export class HeaderComponent {
     { link : ['/', 'student'], label: 'Student View' },
   ];
 
+  logout(){
+    this.auth.logout();
+  }
 
 }

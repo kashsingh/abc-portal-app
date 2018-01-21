@@ -1,4 +1,4 @@
-<header class="header-1">
+<header class="header-1" *ngIf="auth.isAuthenticated()">
     <div class="branding">
       <a class="nav-link">
         <clr-icon shape="shield"></clr-icon>
@@ -16,13 +16,13 @@
       </label>
     </form>
     <div class="header-actions">
-      <a href="#" class="nav-link nav-text">
+      <a [routerLink]="'/login'" (click)="logout()" class="nav-link nav-text">
           Log Out
       </a>
   </div>
   </header>
 
-  <nav class="subnav">
+  <nav class="subnav" *ngIf="auth.isAuthenticated()">
     <ul class="nav">
       <li *ngFor="let subLink of subLinks" class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="subLink.link">{{subLink.label}}</a>
