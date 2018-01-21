@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 .w3-container {
-    padding: 5px 20px 10px 20px;
-    margin: 20px 20px 10px 20px;
+    padding: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
     background: #F3F6FA;
     min-height: 500px;
+    min-width: 500px;
 }
 .w3-border {
     border: 3px solid ;

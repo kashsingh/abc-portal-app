@@ -9,7 +9,7 @@
 
               <div class="form-group row">
                   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="firstname">Student's Name</label>
+                    <label for="name" class="required">Student's Name</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <input class="form-control" type="text" id="firstname" placeholder="Firstname" size="45">
@@ -19,21 +19,9 @@
                   </div>
               </div>
 
-              <!-- <div class="form-group row">
-                  <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                      <label for="gForm_1">Student's Name</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" type="text" id="gForm_1" placeholder="Firstname" size="45">
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" type="text" id="gForm_2" placeholder="Lastname" size="35">
-                  </div>
-              </div>               -->
-
               <div class="form-group row">
                   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="username">Username</label>
+                    <label for="username" class="required">Username</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
                     <input type="text" id="username" placeholder="Student's Username" size="35">
@@ -42,7 +30,7 @@
 
               <div class="form-group row">
                   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="password">Password</label>
+                    <label for="password" class="required">Password</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
                     <input type="password" id="password" placeholder="Default password for student" size="35">
@@ -51,7 +39,7 @@
 
               <div class="form-group row">
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                  <label for="course">Course</label>
+                  <label for="course" class="required">Course</label>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="select">
@@ -66,7 +54,7 @@
 
               <div class="form-group row">
                   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="batch">Batch</label>
+                    <label for="batch" class="required">Batch</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="select">
@@ -81,15 +69,18 @@
 
               <div class="form-group row">
                   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="email">Email</label>
+                    <label for="email" class="required">Email</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
                     <input type="text" id="email" placeholder="Student's Email" size="35">
                   </div>
               </div>
               <span></span>
-              <div class="col-lg-2 offset-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="row flex-items-xs-center" >
+                <div class="col-lg-6 offset-lg-3 col-md-4 offset-md-4 col-sm-12 col-xs-12">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="button" class="btn btn-danger">Cancel</button>
+                </div>
               </div>
           </section>
         </form>
