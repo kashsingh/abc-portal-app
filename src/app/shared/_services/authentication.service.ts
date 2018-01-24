@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-    authenticated = false;
+    private authenticated = new BehaviorSubject<boolean>(false);
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private router: Router
+    ) { }
 
     login(username: string, password: string) {
         return this.http.post<any>('http://localhost:8080/auth', { username: username, password: password })
@@ -17,15 +22,17 @@ export class AuthenticationService {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
-                this.authenticated = true;
+                this.authenticated.next(true);
+                this.router.navigate(['/']);
                 return user;
             });
     }
 
     logout() {
         // remove user from local storage to log user out
-        this.authenticated = false;
+        this.authenticated.next(false);
         localStorage.removeItem('currentUser');
+        this.router.navigate(['/login']);
     }
 
     public getToken(): string {
@@ -33,8 +40,8 @@ export class AuthenticationService {
         return currentUser.token;
     }
 
-    public isAuthenticated(): boolean{
-        return this.authenticated;
+    public isAuthenticated(){
+        return this.authenticated.asObservable();
     }
     
 }

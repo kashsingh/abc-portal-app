@@ -6,33 +6,22 @@ import { EnrollSemesterComponent } from './enroll-semester/enroll-semester.compo
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ViewResultComponent } from './view-result/view-result.component'
 import { StudentMenuComponent } from './student-menu/student-menu.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
 	{ 
 	    path: '',
         children: [ 
-            {
-                path: '',
-                component: StudentMenuComponent,
-                pathMatch: 'full'
-            },
-            {
-                path: 'profile/view',
-                component: ViewProfileComponent,
-                pathMatch: "full"
-            },
-            {
-                path: 'profile/edit',
-                component: EditProfileComponent,
-            },
-            {
-                path: 'semester/enroll',
-                component: EnrollSemesterComponent
-            },
-            {
-                path: 'result',
-                component: ViewResultComponent
-            }	
+            { path: '', component: StudentMenuComponent, pathMatch: 'full' },
+            { path: 'profile', 
+              children: [
+                    { path: '', component: ViewProfileComponent, pathMatch: "full" },
+                    { path: 'edit', component: EditProfileComponent }
+                ]
+            },   
+            { path: 'change-password', component: ChangePasswordComponent },
+            { path: 'semester-enroll', component: EnrollSemesterComponent },
+            { path: 'result', component: ViewResultComponent }	
 	   ]
 	}  
 ];

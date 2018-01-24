@@ -14,6 +14,9 @@ import { StudentUpdateComponent } from './manage-student/student-update/student-
 import { StudentMarksUpdateComponent } from './manage-student/student-marks-update/student-marks-update.component';
 import { StudentDeleteComponent } from './manage-student/student-delete/student-delete.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { TopStudentComponent } from './reports/top-student/top-student.component';
+import { ScoringSubjectsComponent } from './reports/scoring-subjects/scoring-subjects.component';
+import { ClassResultComponent } from './reports/class-result/class-result.component';
 
 @NgModule({
   imports: [
@@ -34,7 +37,10 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     StudentUpdateComponent, 
     StudentMarksUpdateComponent, 
     StudentDeleteComponent,
-    AdminMenuComponent
+    TopStudentComponent,
+    ScoringSubjectsComponent,
+    ClassResultComponent,
+    AdminMenuComponent,
   ]
 })
 export class AdminPageModule { }

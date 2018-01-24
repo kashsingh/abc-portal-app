@@ -3,5 +3,7 @@
     <alert></alert>
     <router-outlet></router-outlet>
   </div>
-  <app-sidebar class="sidenav" *ngIf="auth.isAuthenticated()"></app-sidebar>
+  <app-sidebar class="sidenav">
+    <!-- *ngIf="isLoggedIn | async as isAuthenticated"> -->
+  </app-sidebar>
 </div>

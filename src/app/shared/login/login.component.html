@@ -19,7 +19,7 @@
 </div> -->
 
 <div class="login-wrapper">
-    <form class="login" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <form class="login" name="form" (ngSubmit)="f.form.valid && tryLogin()" #f="ngForm" novalidate>
         <label class="title">
             <h3 class="welcome">Welcome to</h3>
             ABC Student Portal
@@ -45,6 +45,7 @@
                     Loading...
                 </span>
             </div>
+            
         </div>
     </form>
 </div>

@@ -15,12 +15,14 @@ import { AuthenticationService } from './shared/_services/index';
 import { JwtInterceptor } from './shared/_guards/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginLayoutComponent } from './shared/login/login-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,

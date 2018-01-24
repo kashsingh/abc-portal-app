@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../_services/index';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,14 @@ import { AuthenticationService } from '../../../_services/index';
   styles: ['.subnav{background: #DDDDDD;}']
 })
 export class HeaderComponent {
+
+  // isLoggedIn: Observable<boolean>;
+
   constructor(public auth: AuthenticationService) { }
+
+  ngOnInit(){
+      // this.isLoggedIn = this.auth.isAuthenticated();
+  }
   
   headerLinks = [
     { link: ['/', 'admin'], icon: 'home'},

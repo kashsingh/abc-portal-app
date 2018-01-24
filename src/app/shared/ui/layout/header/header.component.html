@@ -1,4 +1,4 @@
-<header class="header-1" *ngIf="auth.isAuthenticated()">
+ <header class="header-1"> <!--*ngIf="isLoggedIn | async as isAuthenticated"> -->
     <div class="branding">
       <a class="nav-link">
         <clr-icon shape="shield"></clr-icon>
@@ -22,7 +22,7 @@
   </div>
   </header>
 
-  <nav class="subnav" *ngIf="auth.isAuthenticated()">
+   <nav class="subnav"> <!--*ngIf="isLoggedIn | async as isAuthenticated"> -->
     <ul class="nav">
       <li *ngFor="let subLink of subLinks" class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="subLink.link">{{subLink.label}}</a>

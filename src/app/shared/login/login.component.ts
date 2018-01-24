@@ -19,14 +19,15 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService
+    ) { }
 
     ngOnInit() {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    login() {
+    tryLogin() {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
                     } else {
                       // The backend returned an unsuccessful response code.
                       // The response body may contain clues as to what went wrong,
-                    //   this.alertService.error(err.error.message);
+                  //#   this.alertService.error(err.error.message);
                         this.unauthorize = true;
                     }
                     this.loading = false;

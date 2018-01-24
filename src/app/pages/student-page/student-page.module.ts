@@ -6,7 +6,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EnrollSemesterComponent } from './enroll-semester/enroll-semester.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ViewResultComponent } from './view-result/view-result.component';
-import { StudentMenuComponent } from './student-menu/student-menu.component'
+import { StudentMenuComponent } from './student-menu/student-menu.component';
+import { ChangePasswordComponent } from './change-password/change-password.component'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { StudentMenuComponent } from './student-menu/student-menu.component'
     EditProfileComponent,
     EnrollSemesterComponent,
     ViewResultComponent,
-    StudentMenuComponent
+    StudentMenuComponent,
+    ChangePasswordComponent
   ],
   exports: [
   ]
