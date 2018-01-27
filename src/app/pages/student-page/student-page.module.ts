@@ -22,7 +22,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     StudentMenuComponent,
     ChangePasswordComponent
   ],
-  exports: [
-  ]
+
+  providers: [
+    //StudentService
+  ]  ,
+
 })
 export class StudentPageModule { }

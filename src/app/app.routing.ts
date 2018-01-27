@@ -5,6 +5,7 @@ import { AuthGuard } from './shared/_guards/auth.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { LoginLayoutComponent } from './shared/login/login-layout.component';
 import { AppLayoutComponent } from './shared/ui/layout/layout.component';
+import { RolesGuard } from './shared/_guards/role-guard';
 
 const appRoutes: Routes = [
   {
@@ -12,9 +13,18 @@ const appRoutes: Routes = [
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'admin', pathMatch: 'full'}, 
-      { path: 'admin', loadChildren: './pages/admin-page/admin-page.module#AdminPageModule' },
-      { path: 'student', loadChildren: 'app/pages/student-page/student-page.module#StudentPageModule' },
+      { 
+        path: 'admin', 
+        loadChildren: './pages/admin-page/admin-page.module#AdminPageModule',
+        canActivate : [RolesGuard],
+        data : { expectedRole: 'admin'}
+      },
+      { 
+        path: 'student', 
+        loadChildren: 'app/pages/student-page/student-page.module#StudentPageModule',
+        canActivate: [RolesGuard],
+        data : { expectedRole: 'student'}
+      },
     ]
   },
   {

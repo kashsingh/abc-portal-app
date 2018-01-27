@@ -12,28 +12,26 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
-    returnUrl: string;
+    // returnUrl: string;
     unauthorize = false;
 
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
+        // private route: ActivatedRoute,
+        // private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService
     ) { }
 
     ngOnInit() {
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     tryLogin() {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
+                data => {  },
                 (err: HttpErrorResponse) => {
                     if (err.error instanceof Error) {
                       // A client-side or network error occurred. Handle it accordingly.

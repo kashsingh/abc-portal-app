@@ -7,8 +7,7 @@ import { AppLayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainComponent } from './layout/main/main.component';
-import { AlertComponent } from './alert/alert.component';
-import { AlertService } from '../_services/index';
+// import { AlertService } from '../_services/index';
 
 @NgModule({
   imports: [
@@ -21,13 +20,12 @@ import { AlertService } from '../_services/index';
     HeaderComponent, 
     SidebarComponent, 
     MainComponent,
-    AlertComponent
   ],
   exports: [
     AppLayoutComponent
   ],
   providers: [
-    AlertService
+    // AlertService
   ]
 })
 export class UiModule { }

@@ -31,7 +31,8 @@
       </div>
 
       <div class="col-xs-6">
-        <a [routerLink]="['delete']" routerLinkActive="active">
+          <!-- [routerLink]="['delete']" routerLinkActive="active"-->
+        <a (click) = "findStudentModal = true" >
           <div class="tile red">
             <h3 class="title">Delete Student Account</h3>
             <p class="detail">Click here to delete a student's account.</p>
@@ -42,3 +43,27 @@
   </div>
 </div>
 </div>
+
+<!-- <clr-modal [(clrModalOpen)]= "findStudentModal">
+  <h3 class="modal-title">I have a nice title</h3>
+  <div class="modal-body">
+      <p>But not much to say...</p>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="findStudentModal = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="findStudentModal = false">Ok</button>
+  </div>
+</clr-modal> -->
+
+<clr-modal [(clrModalOpen)]="findStudentModal">
+    <h3 class="modal-title">Search Student User</h3>
+    <!-- <h3 class="modal-title"></h3> -->
+    <div class="modal-body">
+      <p>Look for existing user by student id.</p>
+      <input type="text" name="category" placeholder="Student ID" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="findStudentModal = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="findStudentModal = false">Search</button>
+    </div>
+</clr-modal>

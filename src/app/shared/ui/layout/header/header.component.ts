@@ -9,25 +9,39 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeaderComponent {
 
-  // isLoggedIn: Observable<boolean>;
+  user = JSON.parse(localStorage.getItem('currentUser'))
+  userType: string;
 
-  constructor(public auth: AuthenticationService) { }
-
-  ngOnInit(){
-      // this.isLoggedIn = this.auth.isAuthenticated();
-  }
-  
   headerLinks = [
     { link: ['/', 'admin'], icon: 'home'},
     { link: ['/', 'settings'], icon: 'cog'},
-  ];
+  ]; 
 
   subLinks = [
     { link : ['/', 'admin', 'student'], label: 'Manage Student' },
     { link : ['/', 'admin','course'], label: 'Manage Course' },
     { link : ['/', 'admin', 'reports'], label: 'Reports' },
-    { link : ['/', 'student'], label: 'Student View' },
   ];
+
+  constructor(public auth: AuthenticationService) { }
+
+  ngOnInit(){
+      if(this.user.admin) {
+          this.userType = 'admin';
+      } else{
+        this.userType = 'student';
+      }
+
+      if( this.userType === 'student'){
+        this.headerLinks = [
+          { link: ['/', 'student'], icon: 'home'},
+          { link: ['/', 'settings'], icon: 'cog'},
+        ];
+        this.subLinks = [
+          { link : ['/', 'student'], label: 'Dashboard' }
+        ];
+      }
+  }
 
   logout(){
     this.auth.logout();

@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ClarityModule } from "@clr/angular";
@@ -11,20 +12,24 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { LoginComponent } from './shared/login/login.component';
 import { AuthGuard } from './shared/_guards/auth.guard';
-import { AuthenticationService } from './shared/_services/index';
+import { AuthenticationService, AlertService } from './shared/_services/index';
 import { JwtInterceptor } from './shared/_guards/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginLayoutComponent } from './shared/login/login-layout.component';
+import { RolesGuard } from './shared/_guards/role-guard';
+import { AlertComponent } from "./shared/alert/alert.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     LoginComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    AlertComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     ClarityModule.forRoot(),
     UiModule,
@@ -37,6 +42,8 @@ import { LoginLayoutComponent } from './shared/login/login-layout.component';
   providers: [
     AuthGuard,
     AuthenticationService,
+    RolesGuard,
+    AlertService
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: JwtInterceptor,

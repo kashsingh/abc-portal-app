@@ -28,24 +28,25 @@
         <div class="login-group" >
 
             <div class="form-control" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <input class="username" type="text" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="Username">
+                <input [disabled]="loading" class="username" type="text" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="Username">
             </div>
 
             <div class="form-control" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                <input class="password" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password">
+                <input [disabled]="loading" class="password" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password">
             </div>
 
             <div class="error active" *ngIf="f.submitted && !password.valid && !username.valid || unauthorize">
                 Invalid user name or password
             </div>
 
-            <div class="row">
-                <button [disabled]="loading" type="submit" class="btn btn-primary">Login</button>
-                <span class="spinner spinner-inline" *ngIf="loading">
-                    Loading...
-                </span>
-            </div>
+            <!-- <div class="row"> -->
+            <button [disabled]="loading" type="submit" class="btn btn-primary">Login</button>
+            
+            <!-- </div> -->
             
         </div>
+        <span class="spinner spinner-inline" *ngIf="loading">
+            Loading...
+        </span>
     </form>
 </div>

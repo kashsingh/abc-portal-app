@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AdminPageRoutingModule } from "./admin-page.routing";
+import { ClarityModule } from "@clr/angular";
 
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
@@ -17,10 +18,12 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { TopStudentComponent } from './reports/top-student/top-student.component';
 import { ScoringSubjectsComponent } from './reports/scoring-subjects/scoring-subjects.component';
 import { ClassResultComponent } from './reports/class-result/class-result.component';
+import { AdminService } from './admin.service';
 
 @NgModule({
   imports: [
-    AdminPageRoutingModule
+    AdminPageRoutingModule,
+    ClarityModule.forChild(),
   ],
   exports: [
   ],
@@ -41,6 +44,9 @@ import { ClassResultComponent } from './reports/class-result/class-result.compon
     ScoringSubjectsComponent,
     ClassResultComponent,
     AdminMenuComponent,
+  ],
+  providers: [
+    AdminService
   ]
 })
 export class AdminPageModule { }

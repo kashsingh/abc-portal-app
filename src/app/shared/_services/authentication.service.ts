@@ -16,14 +16,18 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         return this.http.post<any>('http://localhost:8080/auth', { username: username, password: password })
-            .map(user => {
+            .map(user => {            
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
                 this.authenticated.next(true);
-                this.router.navigate(['/']);
+                if(user.admin){
+                    this.router.navigateByUrl('/admin');
+                } else {
+                    this.router.navigateByUrl('/student');
+                }
                 return user;
             });
     }

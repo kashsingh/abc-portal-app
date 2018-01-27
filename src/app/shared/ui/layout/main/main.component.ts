@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../../_services/index';
-import { Observable } from 'rxjs/Observable';
+// import { AuthenticationService } from '../../../_services/index';
+// import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-main',
