@@ -13,7 +13,8 @@
       </div>
 
       <div class="col-xs-6">
-        <a [routerLink]="['view']" routerLinkActive="active">
+          <!-- [routerLink]="['view']" routerLinkActive="active" -->
+        <a (click) = "findStudentModal = true">
           <div class="tile orange">
             <h3 class="title">View/Edit Student Details</h3>
             <p class="detail">Click here to edit student details.</p>
@@ -22,7 +23,8 @@
       </div>
     
       <div class="col-xs-6">
-        <a [routerLink]="['update-marks']" routerLinkActive="active">
+          <!-- [routerLink]="['update-marks']" routerLinkActive="active" -->
+        <a (click) = "findStudentModal = true">
           <div class="tile green">
             <h3 class="title">Update Student Marks</h3>
             <p class="detail">Click here to update a students marks records.</p>
@@ -44,26 +46,33 @@
 </div>
 </div>
 
-<!-- <clr-modal [(clrModalOpen)]= "findStudentModal">
-  <h3 class="modal-title">I have a nice title</h3>
-  <div class="modal-body">
-      <p>But not much to say...</p>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-outline" (click)="findStudentModal = false">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="findStudentModal = false">Ok</button>
-  </div>
-</clr-modal> -->
-
+<!-- Student Search Modal -->
 <clr-modal [(clrModalOpen)]="findStudentModal">
-    <h3 class="modal-title">Search Student User</h3>
-    <!-- <h3 class="modal-title"></h3> -->
-    <div class="modal-body">
-      <p>Look for existing user by student id.</p>
-      <input type="text" name="category" placeholder="Student ID" />
+
+  <h3 class="modal-title">Search Student User</h3>
+     
+  <div class="modal-body">
+    <!-- Student Not Found Alert -->
+    <div class="alert alert-danger alert-sm " *ngIf='!studentFound'>
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Student not found.
+                </span>
+            </div>
+        </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline" (click)="findStudentModal = false">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="findStudentModal = false">Search</button>
-    </div>
+
+    <p>Look for existing user by student id.</p>
+    <input type="text" name="category" placeholder="Student ID" #studentId />
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="findStudentModal = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="searchStudent(studentId.value)">Search</button>
+  </div>
 </clr-modal>

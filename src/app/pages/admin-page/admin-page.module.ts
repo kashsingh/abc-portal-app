@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AdminPageRoutingModule } from "./admin-page.routing";
 import { ClarityModule } from "@clr/angular";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
@@ -13,17 +15,24 @@ import { StudentCreateComponent } from './manage-student/student-create/student-
 import { ViewStudentComponent } from './manage-student/view-student/view-student.component';
 import { StudentUpdateComponent } from './manage-student/student-update/student-update.component';
 import { StudentMarksUpdateComponent } from './manage-student/student-marks-update/student-marks-update.component';
-import { StudentDeleteComponent } from './manage-student/student-delete/student-delete.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { TopStudentComponent } from './reports/top-student/top-student.component';
 import { ScoringSubjectsComponent } from './reports/scoring-subjects/scoring-subjects.component';
 import { ClassResultComponent } from './reports/class-result/class-result.component';
 import { AdminService } from './admin.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from '../../shared/_guards/jwt.interceptor';
+import { AuthenticationService,  } from '../../shared/_services/index'; //AlertService
+// import { AlertComponent } from '../../shared/alert/alert.component';
 
 @NgModule({
   imports: [
+    CommonModule,
     AdminPageRoutingModule,
     ClarityModule.forChild(),
+    FormsModule, 
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
   ],
@@ -39,14 +48,21 @@ import { AdminService } from './admin.service';
     ViewStudentComponent, 
     StudentUpdateComponent, 
     StudentMarksUpdateComponent, 
-    StudentDeleteComponent,
     TopStudentComponent,
     ScoringSubjectsComponent,
     ClassResultComponent,
     AdminMenuComponent,
+    // AlertComponent
   ],
   providers: [
-    AdminService
+    AdminService,
+    // AlertService,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ]
 })
 export class AdminPageModule { }

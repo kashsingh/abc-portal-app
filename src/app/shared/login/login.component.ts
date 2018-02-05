@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { AlertService, AuthenticationService } from '../_services/index';
+import { Component } from '@angular/core';
+import { AuthenticationService } from '../_services/index';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Component({
@@ -9,29 +7,18 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
     styleUrls: ['login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     model: any = {};
     loading = false;
-    // returnUrl: string;
     unauthorize = false;
 
-    constructor(
-        // private route: ActivatedRoute,
-        // private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService
-    ) { }
-
-    ngOnInit() {
-        // get return url from route parameters or default to '/'
-        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
+    constructor(private authenticationService: AuthenticationService) { }
 
     tryLogin() {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
-                data => {  },
+                data => { },
                 (err: HttpErrorResponse) => {
                     if (err.error instanceof Error) {
                       // A client-side or network error occurred. Handle it accordingly.
@@ -39,8 +26,7 @@ export class LoginComponent implements OnInit {
                     } else {
                       // The backend returned an unsuccessful response code.
                       // The response body may contain clues as to what went wrong,
-                  //#   this.alertService.error(err.error.message);
-                        this.unauthorize = true;
+                      this.unauthorize = true;
                     }
                     this.loading = false;
                 }

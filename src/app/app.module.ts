@@ -13,12 +13,13 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { LoginComponent } from './shared/login/login.component';
 import { AuthGuard } from './shared/_guards/auth.guard';
 import { AuthenticationService, AlertService } from './shared/_services/index';
-import { JwtInterceptor } from './shared/_guards/jwt.interceptor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+//import { JwtInterceptor } from './shared/_guards/jwt.interceptor';
+import { HttpClientModule, } from '@angular/common/http'; //HTTP_INTERCEPTORS
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginLayoutComponent } from './shared/login/login-layout.component';
 import { RolesGuard } from './shared/_guards/role-guard';
-import { AlertComponent } from "./shared/alert/alert.component";
+// import { AlertComponent } from "./shared/alert/alert.component";
+import { LandingPageComponent } from "./shared/landing-page/landing-page.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlertComponent } from "./shared/alert/alert.component";
     PageNotFoundComponent,
     LoginComponent,
     LoginLayoutComponent,
-    AlertComponent
+    LandingPageComponent,
+    // AlertComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,6 +36,7 @@ import { AlertComponent } from "./shared/alert/alert.component";
     ClarityModule.forRoot(),
     UiModule,
     FormsModule,
+    // ReactiveFormsModule,
     HttpClientModule,
     //AdminPageModule,
     //StudentPageModule,
@@ -43,7 +46,7 @@ import { AlertComponent } from "./shared/alert/alert.component";
     AuthGuard,
     AuthenticationService,
     RolesGuard,
-    AlertService
+    // AlertService,
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: JwtInterceptor,

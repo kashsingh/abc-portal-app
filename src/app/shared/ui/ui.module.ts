@@ -7,15 +7,17 @@ import { AppLayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainComponent } from './layout/main/main.component';
-// import { AlertService } from '../_services/index';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from '../_services/index';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    ClarityModule
+    ClarityModule.forChild()
   ],
   declarations: [
+    AlertComponent,
     AppLayoutComponent, 
     HeaderComponent, 
     SidebarComponent, 
@@ -25,7 +27,7 @@ import { MainComponent } from './layout/main/main.component';
     AppLayoutComponent
   ],
   providers: [
-    // AlertService
+    AlertService
   ]
 })
 export class UiModule { }

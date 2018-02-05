@@ -1,47 +1,82 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import { StudentUser, CourseSubject } from "../../shared/_models/interfaces";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { IStudentUser, ICourseSubject, IApiResponse } from "../../shared/_models/interfaces";
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AdminService {
     constructor(private http: HttpClient) { }
 
-    getStudent(id: number) {
-        return this.http.get('/api/admin/student/' + id);
+    baseUrl = "http://localhost:8080/api/admin/";
+
+    private searchedStudentSource = new BehaviorSubject<IStudentUser>(undefined);
+
+    searchedStudent$ = this.searchedStudentSource.asObservable();
+
+    setSearchedStudent(student: any) {
+        this.searchedStudentSource.next(student);
+      }
+    
+    getStudent(id: number): Observable<IStudentUser> {
+        return this.http.get<IStudentUser>(this.baseUrl+'student/'+id)
+            .pipe(
+                catchError(this.handleError)
+            );;
     }
 
-    createStudent(studentUser: StudentUser) {
-        return this.http.post('/api/admin/student/create', studentUser);
+    createStudent(studentUser: IStudentUser) {
+        return this.http.post(this.baseUrl + 'student/create', studentUser);
     }
 
-    updateStudent(studentUser: StudentUser, id: number) {
-        return this.http.put('/api/admin/student/'+id+'/update', studentUser);
+    updateStudent(studentUser: IStudentUser, id: number) {
+        return this.http.put(this.baseUrl + 'student/'+id+'/update', studentUser);
     }
 
-    deleteStudent(id: number) {
-        return this.http.delete('/api/admin/student/' + id + '/delete');
+    deleteStudent(id: number): Observable<boolean> {
+        return this.http.delete<IApiResponse>(this.baseUrl + 'student/' + id + '/delete')
+                .pipe(
+                    map(res => res.status),
+                    catchError(this.handleError)
+                );
     }
 
-    createSubject(subject: CourseSubject) {
-        return this.http.post('/api/admin/subject/create', subject);
+    createSubject(subject: ICourseSubject): Observable<boolean> {
+        return this.http.post<IApiResponse>(this.baseUrl + 'subject/create', subject)
+                .pipe(
+                    map(res => res.status),
+                    catchError(this.handleError)
+                );;
     }
 
     getAllSubjects(course: string) {
-        return this.http.get('/api/admin/subject/all-subjects/course/' + course);
+        return this.http.get(this.baseUrl + 'subject/all-subjects/course/' + course);
     }
 
-    updateSubject(subject: CourseSubject) {
-        return this.http.put('/api/admin/subject/update', subject);
+    updateSubject(subject: ICourseSubject) {
+        return this.http.put(this.baseUrl + 'subject/update', subject);
     }
 
-    deleteSubject(id: number) {
-        return this.http.delete('/api/admin/subject/' + id + '/delete');
+    deleteSubject(id: number){
+        return this.http.delete(this.baseUrl + 'subject/' + id + '/delete');
     }
 
     updateMarks(subjectMarks: any, id: number, sem: number) {
-        return this.http.put('/api/admin/student/'+id+'semester/'+sem+'/update-marks', subjectMarks);
+        return this.http.put(this.baseUrl + 'student/'+id+'semester/'+sem+'/update-marks', subjectMarks);
     }
 
+    private handleError(error: HttpErrorResponse) {
+        console.error('server error:', error);
+        if (error.error instanceof Error) {
+            let errMessage = error.error.message;
+            return Observable.throw(errMessage);
+            // Use the following instead if using lite-server
+            //return Observable.throw(err.text() || 'backend server error');
+        }
+        return Observable.throw(error || 'Node.js server error');
+      };
+      
 
 }

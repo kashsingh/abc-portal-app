@@ -2,16 +2,16 @@
   <div class="w3-container w3-border w3-round-xlarge">
     <div class="row flex-items-xs-center">
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-          <div class="card">
+          <div class="card" *ngIf="studentUser">
               <div class="card-header">
-                  <h1 align=center class="strong">Student Name</h1>
+                  <h1 align=center class="strong">{{studentUser?.firstname}} {{studentUser?.lastname}}</h1>
               </div>
               <div class="card-block">
                   <div class="card-media-block center" >
                       <img src="assets/images/user-image.png" class="card-media-image">
                       <div class="card-media-description">
                           <span class="card-media-title">
-                              Username
+                            {{studentUser?.username}}
                           </span>
                           <span class="card-media-text">
                               Student
@@ -22,20 +22,24 @@
                     <table class="table table-user-information">
                       <tbody>
                         <tr>
+                          <td>Student ID</td>
+                          <td>{{studentUser?.studentId}}</td>
+                        </tr>
+                        <tr>
                           <td>Course</td>
-                          <td>Computer Science</td>
+                          <td>{{studentUser?.course}}</td>
                         </tr>
                         <tr>
                           <td>Batch</td>
-                          <td>2017</td>
+                          <td>{{studentUser?.batch}}</td>
                         </tr>
                         <tr>
                           <td>Email</td>
-                          <td><a href="mailto:info@support.com">info@support.com</a></td>
+                          <td><a href="mailto:{{studentUser.email}}">{{studentUser?.email}}</a></td>
                         </tr>
                         <tr>
                           <td>Current Semester</td>
-                          <td>7
+                          <td>{{studentUser?.currentSemester}}
                           </td>
                         </tr>
                       </tbody>
@@ -43,11 +47,24 @@
                   </div>
               </div>
               <div class="card-footer">
-                  <button class="btn btn-sm btn-link">Edit Student</button>
-                  <button class="btn btn-sm btn-link">Delete Student</button>
+                  <button class="btn btn-sm btn-info-outline" [routerLink]="['./edit']">Edit Student</button>
+                  <button class="btn btn-sm btn-info-outline">Update Marks</button>
+                  <button class="btn btn-sm btn-danger-outline" (click) = "studentDeleteModal = true">Delete Student</button>
               </div>
           </div>
       </div>
     </div>
   </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="studentDeleteModal" *ngIf="studentUser">
+    <h3 class="modal-title">Delete Student User</h3>
+    <div class="modal-body">
+        <p>Please confirm to delete {{studentUser?.firstname}} {{studentUser?.lastname}}'s profile.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="studentDeleteModal = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="deleteStudent()">Ok</button>
+    </div>
+</clr-modal>
+  

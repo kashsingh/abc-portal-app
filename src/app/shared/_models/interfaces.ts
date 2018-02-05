@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     id: number;
     username: string;
     password: string;
@@ -6,25 +6,30 @@ export interface User {
     lastName: string;
 }
 
-export interface StudentUser {
-    studentId?: number,
-    username: string,
-	password: string,
+export interface IStudentUser {
 	firstname:string,
-	lastname: string,
-	email: string,
+    lastname: string,
+    password: string,
+    username: string,
 	course?: string,
     batch?: string,
+    email: string,
+    studentId?: number,
     currentSemester?: number
 }
 
-export interface CourseSubject {
+export interface ICourseSubject {
     id?: number,
     course: string,
-    subjectName: string
+    subject_name: string
 }
 
-export interface Marks {
+export interface IMarks {
     subject_id: string,
     marks: string
+}
+
+export interface IApiResponse {
+    status: boolean;
+    error?: string;
 }

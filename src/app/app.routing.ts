@@ -6,6 +6,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { LoginLayoutComponent } from './shared/login/login-layout.component';
 import { AppLayoutComponent } from './shared/ui/layout/layout.component';
 import { RolesGuard } from './shared/_guards/role-guard';
+import { LandingPageComponent } from './shared/landing-page/landing-page.component';
 
 const appRoutes: Routes = [
   {
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', pathMatch: 'full', component: LandingPageComponent},
       { 
         path: 'admin', 
         loadChildren: './pages/admin-page/admin-page.module#AdminPageModule',
