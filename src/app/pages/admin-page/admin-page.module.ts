@@ -9,7 +9,6 @@ import { ManageStudentComponent } from './manage-student/manage-student.componen
 import { ReportsComponent } from './reports/reports.component';
 import { SubjectCreateComponent } from './manage-course/subject-create/subject-create.component';
 import { ViewSubjectsComponent } from './manage-course/view-subjects/view-subjects.component';
-import { SubjectDeleteComponent } from './manage-course/subject-delete/subject-delete.component';
 import { SubjectUpdateComponent } from './manage-course/subject-update/subject-update.component';
 import { StudentCreateComponent } from './manage-student/student-create/student-create.component';
 import { ViewStudentComponent } from './manage-student/view-student/view-student.component';
@@ -42,7 +41,6 @@ import { AuthenticationService,  } from '../../shared/_services/index'; //AlertS
     ReportsComponent, 
     SubjectCreateComponent, 
     ViewSubjectsComponent, 
-    SubjectDeleteComponent, 
     SubjectUpdateComponent, 
     StudentCreateComponent, 
     ViewStudentComponent, 

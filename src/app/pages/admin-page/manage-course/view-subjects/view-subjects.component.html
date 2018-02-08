@@ -1,34 +1,66 @@
 <div class="container">
   <div class="w3-container w3-border w3-round-xlarge">
     <h1 align=center class="strong">Subjects</h1>
+    <p></p>
     <div class="row">
-      <div class="col-sm-8 offset-sm-2">
+      <div class="col-lg-8 offset-lg-2">
       
-          <form>
-              <section class="form-block">                                                   
-                  <div class="form-group row">
-                      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                          <label>Course</label>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                          <div class="select form-control">
-                              <select id="exampleSelect1">
-                                  <option>MEC</option>
-                                  <option>CES</option>
-                                  <option>ECE</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
-                          <button type="submit" class="btn btn-sm">Button</button>
-                      </div>
-                  </div>
-                  
-              </section>
-          </form>
-          
+        <!-- Search Form -->
+        <section class="form-block">                                                   
+            <div class="form-group row">
+                <div class="col-lg-3 offset-lg-2">
+                    <label>Select Course</label>
+                </div>
+                <div class="col-lg-3">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #course>
+                            <option>MEC</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="getSubjects(course.value)" class="btn btn-primary btn-sm search">
+                    <clr-icon shape="search"></clr-icon> Search
+                </button>
+            </div>
+        </section>
 
+        <!-- Data Grid -->
+        <clr-datagrid *ngIf="subjects">
+            <clr-dg-column>Subject ID</clr-dg-column>
+            <clr-dg-column>Subject Name</clr-dg-column>
+            <clr-dg-column>Actions</clr-dg-column>
+        
+            <clr-dg-row *clrDgItems="let subject of subjects">
+                <clr-dg-cell class="table-data">{{subject.id}}</clr-dg-cell>
+                <clr-dg-cell class="table-data">{{subject.subject_name}}</clr-dg-cell>
+                <clr-dg-cell>
+                    <div class="btn-group btn-link btn-sm">
+                        <button class="btn" (click)="selectSubject(subject); subjectEditModal.openSubjectEditModal()">Edit</button>
+                        <button class="btn" (click)="showDeleteModal(subject)">Delete</button>
+                    </div>
+                </clr-dg-cell>
+            </clr-dg-row>
+        
+            <clr-dg-footer>{{subjects.length}} subjects</clr-dg-footer>
+        </clr-datagrid>
+          
       </div>
     </div>
   </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="subjectDeleteModal">
+    <h3 class="modal-title">Delete Subject</h3>
+    <div class="modal-body">
+        <p>All marks records will be deleted for the subject. Please confirm to delete {{selectedSubject?.subject_name}}.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="subjectDeleteModal = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="deleteSubject()">Ok</button>
+    </div>
+</clr-modal>
+
+<subject-update #subjectEditModal [selectedSubject]="selectedSubject"></subject-update>
+<!-- [subjectEditModal]="subjectEditModal" -->

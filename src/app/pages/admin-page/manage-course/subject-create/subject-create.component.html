@@ -14,10 +14,10 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
                         <label for="subject_name" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="subject_name.invalid && (subject_name.touched || subject_name.dirty)">
                             <input type="text" formControlName = "subject_name" id="subject_name" placeholder="Subject Name" size="35">
-                            <span class="tooltip-content" *ngIf = "subjectAdditionForm.hasError('required', 'subject name')">
+                            <span class="tooltip-content" *ngIf = "subjectAdditionForm.hasError('required', 'subject_name')">
                                 Subject Name is required.
                             </span>
-                            <span class="tooltip-content" *ngIf = "subjectAdditionForm.hasError('minlength', 'subject name')">
+                            <span class="tooltip-content" *ngIf = "subjectAdditionForm.hasError('minlength', 'subject_name')">
                                 Min. length is four letters.
                             </span>
                         </label>
@@ -45,15 +45,15 @@
                 <div class="row flex-items-xs-center" >
                   <div class="col-lg-6 offset-lg-3 col-md-4 offset-md-4 col-sm-12 col-xs-12">
                     <button [disabled] = "!subjectAdditionForm.valid" type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
+                    <button type="button" class="btn btn-danger" [routerLink]="['/admin/course']">Cancel</button>
                   </div>
                 </div>
             </section>
           </form>
 
     <!--- Log the FormGroup values to see if the binding is working -->
-    <p>Form value {{ subjectAdditionForm.value | json }} </p>
-    <p> Form status {{ subjectAdditionForm.status | json}} </p>
+    <!-- <p>Form value {{ subjectAdditionForm.value | json }} </p>
+    <p> Form status {{ subjectAdditionForm.status | json}} </p> -->
   
         </div>
       </div>

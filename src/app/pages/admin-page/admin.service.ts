@@ -48,15 +48,19 @@ export class AdminService {
                 .pipe(
                     map(res => res.status),
                     catchError(this.handleError)
-                );;
+                );
     }
 
-    getAllSubjects(course: string) {
-        return this.http.get(this.baseUrl + 'subject/all-subjects/course/' + course);
+    getAllSubjects(course: string): Observable<ICourseSubject[]> {
+        return this.http.get<ICourseSubject[]>(this.baseUrl + 'subject/all-subjects/course/' + course);
     }
 
-    updateSubject(subject: ICourseSubject) {
-        return this.http.put(this.baseUrl + 'subject/update', subject);
+    updateSubject(subject: ICourseSubject): Observable<boolean> {
+        return this.http.put<IApiResponse>(this.baseUrl + 'subject/update', subject)
+                .pipe(
+                    map(res => res.status),
+                    catchError(this.handleError)
+                );
     }
 
     deleteSubject(id: number){

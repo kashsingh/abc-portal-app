@@ -132,7 +132,7 @@
               <div class="row flex-items-xs-center" >
                 <div class="col-lg-6 offset-lg-3 col-md-4 offset-md-4 col-sm-12 col-xs-12">
                   <button [disabled] = "!studentSignupForm.valid" type="submit" class="btn btn-primary">Sign Up</button>
-                  <button type="button" class="btn btn-danger">Cancel</button>
+                  <button type="button" class="btn btn-danger" [routerLink]="['/admin/student']" >Cancel</button>
                 </div>
               </div>
           </section>

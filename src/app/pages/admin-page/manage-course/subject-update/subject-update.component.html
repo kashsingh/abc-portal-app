@@ -1,3 +1,47 @@
-<p>
-  subject-update works!
-</p>
+<!-- Subject Search Modal -->
+<clr-modal [(clrModalOpen)]="subjectEditModal">
+
+    <h3 class="modal-title">Edit Subject</h3>
+
+    <!-- Modal Body    -->
+    <div class="modal-body">
+
+      <!-- Error Alert -->
+      <div class="alert alert-danger alert-sm" *ngIf="subject_name.invalid && (subject_name.touched || subject_name.dirty)">
+          <div class="alert-items">
+              <div class="alert-item static">
+                  <div class="alert-icon-wrapper">
+                      <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                  </div>
+                  <span class="alert-text" *ngIf = "subjectEditForm.hasError('required', 'subject_name')">
+                        Subject Name is required.
+                  </span>
+                  <span class="alert-text" *ngIf = "subjectEditForm.hasError('minlength', 'subject_name')">
+                        Min. length is four letters.
+                  </span>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Subject Update Form -->
+      <form class="compact" [formGroup]="subjectEditForm" (ngSubmit)="onSubmit()" novalidate>
+        <section class="form-block">
+
+            <div class="form-group row">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                  <label for="subject_name" class="required detailHeading">Subject Name</label>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">  
+                    <input type="text" formControlName = "subject_name" id="subject_name" placeholder="Subject Name" size="35">
+                </div>
+            </div>            
+        </section>
+      </form>
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="subjectEditModal = false">Cancel</button>
+      <button [disabled] = "!subjectEditForm.valid" (click)="onSubmit()" type="button" class="btn btn-primary">Update</button>
+    </div>
+  </clr-modal>
+
