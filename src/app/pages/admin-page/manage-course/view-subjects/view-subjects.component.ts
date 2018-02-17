@@ -32,7 +32,7 @@ export class ViewSubjectsComponent implements OnInit {
   }
 
   getSubjects(selectedCourse: string){
-    this.adminService.getAllSubjects(selectedCourse)
+    this.adminService.getAllCourseSubjects(selectedCourse)
       .subscribe(
         data => {
           this.subjects = data;
@@ -46,8 +46,6 @@ export class ViewSubjectsComponent implements OnInit {
   }
 
   selectSubject(subject: ICourseSubject){
-    console.log("Selected Subject")
-    console.log(subject)
     this.selectedSubject = subject;
     // subjectEditModal.openSubjectEditModal()
   }

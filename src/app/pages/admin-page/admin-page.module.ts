@@ -21,8 +21,9 @@ import { ClassResultComponent } from './reports/class-result/class-result.compon
 import { AdminService } from './admin.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../../shared/_guards/jwt.interceptor';
-import { AuthenticationService,  } from '../../shared/_services/index'; //AlertService
-// import { AlertComponent } from '../../shared/alert/alert.component';
+import { AuthenticationService,  } from '../../shared/_services/index';
+import { MarksValidatorDirective } from './manage-student/student-marks-update/marks-validator.directive';
+import { ShowErrorsComponent } from './manage-student/student-marks-update/show-errors/show-errors.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,8 @@ import { AuthenticationService,  } from '../../shared/_services/index'; //AlertS
   exports: [
   ],
   declarations: [
+    ShowErrorsComponent,
+    MarksValidatorDirective,
     ManageCourseComponent, 
     ManageStudentComponent, 
     ReportsComponent, 
@@ -50,11 +53,9 @@ import { AuthenticationService,  } from '../../shared/_services/index'; //AlertS
     ScoringSubjectsComponent,
     ClassResultComponent,
     AdminMenuComponent,
-    // AlertComponent
   ],
   providers: [
     AdminService,
-    // AlertService,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,

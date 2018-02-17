@@ -1,4 +1,4 @@
-<clr-alert *ngIf="message" [clrAlertType]="message.type">
+<clr-alert *ngIf="message" [clrAlertType]="message.type" [clrAlertClosable]="false">
   <div class="alert-item">
       <span class="alert-text">
         {{message.text}}

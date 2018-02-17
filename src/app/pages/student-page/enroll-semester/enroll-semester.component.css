@@ -1,0 +1,8 @@
+.selected-subjects{
+	position:relative;
+	top:47px;
+}
+
+.tooltip-error{
+	color: #A32100;
+}

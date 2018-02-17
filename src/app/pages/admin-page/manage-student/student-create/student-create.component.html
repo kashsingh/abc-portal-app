@@ -39,11 +39,12 @@
             <!-- Username block -->
               <div class="form-group row">
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                  <label for="username" class="required detailHeading">Username</label>
+                  <label for="inputUsername" class="required detailHeading">Username</label>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"> 
                   <label for="inputUsername" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="username.invalid && (username.touched || username.dirty)">
                       <input type="text" formControlName = "username" id="inputUsername" placeholder="Student's Username" size="35">
+                      <!-- Username input errors -->
                       <span class="tooltip-content" *ngIf = "studentSignupForm.hasError('required', 'username')">
                           Username is required.
                       </span>

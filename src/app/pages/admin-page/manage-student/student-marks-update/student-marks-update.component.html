@@ -1,116 +1,66 @@
 <div class="container">
-    <div class="w3-container w3-border w3-round-xlarge">
-      <h1 align=center class="strong">Update Student Marks</h1>
-      <div class="row">
-        <div class="col-sm-8 offset-sm-2">
-        
-          <form class="compact">
-            <section class="form-block">
-  
-                <div class="form-group row">
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                      <label for="firstname" disabled>Student's Name</label>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <input class="form-control" type="text" id="firstname" disabled placeholder="Firstname" size="45">
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <input class="form-control" type="text" id="lastname" disabled placeholder="Lastname" size="45">
-                    </div>
-                </div>
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Update Student Marks</h1>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
 
-                <div class="form-group row">
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                      <label for="username" disabled>Semester</label>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                      <input type="text" id="username" placeholder="Sem" disabled size="2">
-                    </div>
-                </div>
-  
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="course" disabled>Course</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <input type="text" id="course" placeholder="Course Name" disabled size="20">
-                  </div>
-                </div>
-  
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="batch" disabled>Batch</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="batch" placeholder="Batch" disabled size="29">
-                  </div>          
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject1">Subject 1</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject1" placeholder="Marks" size="4">
-                  </div>          
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject2">Subject 2</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject2" placeholder="Marks" size="4">
-                  </div>          
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject3">Subject 3</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject3" placeholder="Marks" size="4">
-                  </div>          
-                </div>
+          <!-- Main Marks View -->
+          <clr-stack-view>
+              <clr-stack-header>
+                  Marks editor
+                  <button 
+                      class="stack-action btn btn-sm btn-link" 
+                      (click)="editModal = true" 
+                      type="button">Edit</button>
+              </clr-stack-header>
+          
+              <clr-stack-block *ngFor="let marks of existingSemesterMarks">
+                  <clr-stack-label>{{marks.subjectName}}</clr-stack-label>
+                  <clr-stack-content>{{marks.marks}}</clr-stack-content>
+              </clr-stack-block>
+          </clr-stack-view>
+          
+          <!-- Modal Form -->
+          <clr-modal [(clrModalOpen)]="editModal">
+            <h3 class="modal-title">Edit mode</h3>
+            <div class="modal-body">
+              <clr-stack-view>
                 
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject4">Subject 4</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject4" placeholder="Marks" size="4">
-                  </div>          
-                </div>
+                  <!-- Student Marks Update Form-->
+                  <form class="compact" [formGroup]="marksUpdateForm"  novalidate>
+                    <section class="form-block">    
+                      <div formArrayName="subjectMarks">
+                        
+                        <clr-stack-block *ngFor="let subjectMark of subjectMarks.controls; let i=index" [formGroupName]="i">                            
+                          
+                          <clr-stack-label class="pullup-label">
+                            <input type="text" formControlName="subjectName" readonly>
+                          </clr-stack-label>
+                  
+                          <clr-stack-content>
+                            <label for="inputMarks" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-md" [class.invalid]="subjectMark.get('marks').invalid && (subjectMark.get('marks').touched || subjectMark.get('marks').dirty)">
+                              <input type="text" id="inputMarks" placeholder="Marks" formControlName="marks" size="4" marks-validate>                            
+                              <show-errors [control]='subjectMark.get("marks")'></show-errors>
+                            </label>                    
+                          </clr-stack-content>
 
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject5">Subject 5</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject5" placeholder="Marks" size="4">
-                  </div>          
-                </div>
+                        </clr-stack-block>
+                        
+                      </div>
+                    </section>
+                  </form>
 
-                <div class="form-group row">
-                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <label for="subject6">Subject 6</label>
-                  </div>                  
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                    <input type="text" id="subject6" placeholder="Marks" size="4">
-                  </div>          
-                </div>
+                <!-- <p>Marks form value: {{ marksUpdateForm.value | json}}</p> -->
+              </clr-stack-view>
+            </div>
 
-                <span></span>
-                <div class="row flex-items-xs-center" >
-                  <div class="col-lg-6 offset-lg-3 col-md-4 offset-md-4 col-sm-12 col-xs-12">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
-                  </div>
-                </div>
-            </section>
-          </form>
-  
-        </div>
+            <div class="modal-footer">
+                <button type="submit" [disabled]="marksUpdateForm.invalid" class="btn btn-primary" (click)="onSubmit()">Update</button>
+                <button type="button" class="btn btn-danger" (click)="revert(); editModal=false">Cancel</button>
+            </div>
+          </clr-modal>
+
       </div>
     </div>
   </div>
+</div>

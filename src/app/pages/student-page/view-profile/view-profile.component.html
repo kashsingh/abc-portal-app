@@ -4,14 +4,14 @@
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
               <div class="card-header">
-                  <h1 align=center class="strong">Student Name</h1>
+                  <h1 align=center class="strong">{{currentUser?.firstname}} {{currentUser?.lastname}}</h1>
               </div>
               <div class="card-block">
                   <div class="card-media-block center" >
                       <img src="assets/images/user-image.png" class="card-media-image">
                       <div class="card-media-description">
                           <span class="card-media-title">
-                              Username
+                              <b>Username: </b>{{currentUser?.username}}
                           </span>
                           <span class="card-media-text">
                               Student
@@ -22,8 +22,12 @@
                     <table class="table table-user-information">
                       <tbody>
                         <tr>
+                          <td>Student ID</td>
+                          <td>{{currentUser?.studentId}}</td>
+                        </tr>
+                        <tr>
                           <td>Course</td>
-                          <td>Computer Science</td>
+                          <td>{{currentUser?.course}}</td>
                         </tr>
                         <tr>
                           <td>Batch</td>
@@ -31,11 +35,11 @@
                         </tr>
                         <tr>
                           <td>Email</td>
-                          <td><a href="mailto:info@support.com">info@support.com</a></td>
+                          <td><a href="mailto:{{currentUser?.email}}">{{currentUser?.email}}</a></td>
                         </tr>
                         <tr>
                           <td>Current Semester</td>
-                          <td>7
+                          <td>{{currentUser?.currentSemester}}
                           </td>
                         </tr>
                       </tbody>
@@ -43,7 +47,7 @@
                   </div>
               </div>
               <div class="card-footer">
-                  <button class="btn btn-sm btn-link">Edit Profile</button>
+                  <button class="btn btn-sm btn-link" routerLink="/student/profile/edit">Edit Profile</button>
               </div>
           </div>
       </div>

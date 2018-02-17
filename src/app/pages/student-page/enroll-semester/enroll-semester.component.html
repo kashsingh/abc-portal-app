@@ -1,3 +1,77 @@
-<p>
-  enroll-semester works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Enroll for Semester {{enrollingSemester}}</h1>
+    <div class="row">
+      
+      <div class="col-lg-7">
+        <div class="available-subjects">
+          <h6>Select the subjects you want to enroll:</h6>
+
+          <clr-datagrid class="datagrid-compact" [(clrDgSelected)]="selectedSubjects" [clDgRowSelection]="true">
+              <clr-dg-column>Subject ID</clr-dg-column>
+              <clr-dg-column>
+                Subject Name
+                <clr-dg-string-filter [clrDgStringFilter]="subjectFilter"></clr-dg-string-filter>
+              </clr-dg-column>
+              <clr-dg-column>Course</clr-dg-column>
+
+              <clr-dg-placeholder>We couldn't find any subjects!</clr-dg-placeholder>
+
+              <clr-dg-row *clrDgItems="let subject of availableSubjectsToEnroll" [clrDgItem]="subject">
+                  <clr-dg-cell>{{subject.id}}</clr-dg-cell>
+                  <clr-dg-cell>{{subject.subject_name}}</clr-dg-cell>
+                  <clr-dg-cell>{{subject.course}}</clr-dg-cell>
+              </clr-dg-row>
+          
+              <clr-dg-footer>
+                {{availableSubjectsToEnroll.length}} subjects
+              </clr-dg-footer>
+          </clr-datagrid>
+
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="selected-subjects">
+
+            <div class="card">
+                <div class="card-block">
+                    <h5 class="card-title">
+                      Selected Subjects
+                      <clr-signpost>
+                          <clr-signpost-content [clrPosition]="'top-left'" *clrIfOpen="toolTipState">
+                              <p class="tooltip-error">You need to select atleast four and a max. of six subjects.</p>
+                          </clr-signpost-content>
+                      </clr-signpost>
+                    </h5>
+
+                    <div class="card-text">
+                        
+                        <table class="table table-compact table-selected-subjects" >
+                          <thead>
+                              <tr>
+                                  <th>Subject ID</th>
+                                  <th>Subject Name</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngFor="let subject of selectedSubjects">
+                            <tr>
+                              <td>{{subject.id}}</td>
+                              <td>{{subject.subject_name}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <a (click)='enrollSubjects()' class="btn btn-sm btn-link">Click to enroll</a>
+                </div>
+            </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

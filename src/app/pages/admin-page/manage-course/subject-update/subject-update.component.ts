@@ -43,7 +43,6 @@ export class SubjectUpdateComponent implements OnInit {
     if(this.subjectEditForm.valid){
       // Check this
         this.existingSubject.subject_name = this.subjectEditForm.get('subject_name').value;
-        console.log("Final value of subject before updating:",this.existingSubject)
         this.adminService.updateSubject(this.existingSubject)
           .subscribe(
             data => {
@@ -61,8 +60,6 @@ export class SubjectUpdateComponent implements OnInit {
 
   openSubjectEditModal(){
     this.subjectEditModal = true;
-    console.log("Subject Modal Subject")
-    console.log(this.existingSubject)
   }
 
 }

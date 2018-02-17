@@ -3,21 +3,24 @@
     <div class="row flex-items-xs-center">
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <div class="card" *ngIf="studentUser">
+            
               <div class="card-header">
                   <h1 align=center class="strong">{{studentUser?.firstname}} {{studentUser?.lastname}}</h1>
               </div>
               <div class="card-block">
+
                   <div class="card-media-block center" >
                       <img src="assets/images/user-image.png" class="card-media-image">
                       <div class="card-media-description">
                           <span class="card-media-title">
-                            {{studentUser?.username}}
+                            <b>Username: </b>{{studentUser?.username}}
                           </span>
                           <span class="card-media-text">
                               Student
                           </span>
                       </div>
                   </div>
+
                   <div class="card-text">
                     <table class="table table-user-information">
                       <tbody>
@@ -45,10 +48,11 @@
                       </tbody>
                     </table>
                   </div>
+
               </div>
               <div class="card-footer">
                   <button class="btn btn-sm btn-info-outline" [routerLink]="['./edit']">Edit Student</button>
-                  <button class="btn btn-sm btn-info-outline">Update Marks</button>
+                  <button class="btn btn-sm btn-info-outline" (click) = "selectSemesterModal = true">Update Marks</button>
                   <button class="btn btn-sm btn-danger-outline" (click) = "studentDeleteModal = true">Delete Student</button>
               </div>
           </div>
@@ -57,6 +61,7 @@
   </div>
 </div>
 
+<!-- Student Delete Modal -->
 <clr-modal [(clrModalOpen)]="studentDeleteModal" *ngIf="studentUser">
     <h3 class="modal-title">Delete Student User</h3>
     <div class="modal-body">
@@ -66,5 +71,52 @@
         <button type="button" class="btn btn-outline" (click)="studentDeleteModal = false">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="deleteStudent()">Ok</button>
     </div>
+</clr-modal>
+
+<!-- Semester Select Modal -->
+<clr-modal [(clrModalOpen)]="selectSemesterModal" *ngIf="studentUser">
+
+  <h3 class="modal-title">Update Marks for Semester</h3>
+     
+  <div class="modal-body">
+    <!-- Enrolled Semester Subjects Not Found Alert -->
+    <div class="alert alert-danger alert-sm" *ngIf='!studentEnrolledOnce'>
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Student hasn't enrolled yet for any semester.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <p *ngIf='studentEnrolledOnce'>Select the semester for which marks needs to be updated</p>
+
+    <!-- Subject Update Form -->
+    <form class="compact" [formGroup]="semesterSelectForm" (ngSubmit)="semesterSelectFormOnSubmit()" novalidate>
+        <section class="form-block">
+            <div class="form-group row">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">  
+                    <div class="select" *ngIf='studentEnrolledOnce'>
+                      <select [disabled]='!studentEnrolledOnce' formControlName = "select_semester" id="inputSemester">
+                        <option [value]="null" disabled>Choose semester</option>
+                        <option *ngFor = "let semester of enrolledSemList" [value]="semester">
+                          {{semester}}
+                        </option>
+                      </select>
+                  </div></div>
+            </div>            
+        </section>
+      </form>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="selectSemesterModal = false">Cancel</button>
+    <button type="button" [disabled]='!studentEnrolledOnce' class="btn btn-primary" (click)="semesterSelectFormOnSubmit()">Update</button>
+  </div>
 </clr-modal>
   

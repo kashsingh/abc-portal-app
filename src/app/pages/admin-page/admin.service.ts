@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IStudentUser, ICourseSubject, IApiResponse } from "../../shared/_models/interfaces";
+import { IStudentUser, ICourseSubject, IApiResponse, IMarks } from "../../shared/_models/interfaces";
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
@@ -13,12 +13,18 @@ export class AdminService {
     baseUrl = "http://localhost:8080/api/admin/";
 
     private searchedStudentSource = new BehaviorSubject<IStudentUser>(undefined);
+    private selectedSemesterMarksSource = new BehaviorSubject<IMarks[]>(undefined);
 
     searchedStudent$ = this.searchedStudentSource.asObservable();
+    selectedSemesterMarks$ = this.selectedSemesterMarksSource.asObservable();
 
     setSearchedStudent(student: any) {
         this.searchedStudentSource.next(student);
-      }
+    }
+
+    setSelectedSemesterMarks(marks: any) {
+        this.selectedSemesterMarksSource.next(marks);
+    }
     
     getStudent(id: number): Observable<IStudentUser> {
         return this.http.get<IStudentUser>(this.baseUrl+'student/'+id)
@@ -27,12 +33,20 @@ export class AdminService {
             );;
     }
 
-    createStudent(studentUser: IStudentUser) {
-        return this.http.post(this.baseUrl + 'student/create', studentUser);
+    createStudent(studentUser: IStudentUser): Observable<boolean> {
+        return this.http.post<IApiResponse>(this.baseUrl + 'student/create', studentUser)
+            .pipe(
+                map(res => res.status),
+                catchError(this.handleError)
+            );
     }
 
-    updateStudent(studentUser: IStudentUser, id: number) {
-        return this.http.put(this.baseUrl + 'student/'+id+'/update', studentUser);
+    updateStudent(studentUser: IStudentUser, id: number): Observable<boolean> {
+        return this.http.put<IApiResponse>(this.baseUrl + 'student/'+id+'/update', studentUser)
+            .pipe(
+                map(res => res.status),
+                catchError(this.handleError)
+            );
     }
 
     deleteStudent(id: number): Observable<boolean> {
@@ -51,7 +65,12 @@ export class AdminService {
                 );
     }
 
-    getAllSubjects(course: string): Observable<ICourseSubject[]> {
+    getStudentEnrolledSubjectMarks(studentId: number, semester: number): Observable<IMarks[]> {
+        return this.http.get<IMarks[]>(
+            this.baseUrl + 'student/'+studentId+'/semester/'+semester+'/enrolled-subjects');
+    }
+
+    getAllCourseSubjects(course: string): Observable<ICourseSubject[]> {
         return this.http.get<ICourseSubject[]>(this.baseUrl + 'subject/all-subjects/course/' + course);
     }
 
@@ -68,7 +87,7 @@ export class AdminService {
     }
 
     updateMarks(subjectMarks: any, id: number, sem: number) {
-        return this.http.put(this.baseUrl + 'student/'+id+'semester/'+sem+'/update-marks', subjectMarks);
+        return this.http.post(this.baseUrl + 'student/'+id+'/semester/'+sem+'/update-marks', subjectMarks);
     }
 
     private handleError(error: HttpErrorResponse) {

@@ -1,3 +1,130 @@
-<p>
-  edit-profile works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Edit Profile</h1>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2" *ngIf="existingStudentDetail!=undefined">
+      
+        <form class="compact" [formGroup]="studentUpdateForm" (ngSubmit)="onSubmit()" novalidate>
+          <section class="form-block">
+
+            <!-- Student Name Block -->
+              <div class="form-group row">
+                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <label for="inputFirstname" class="required detailHeading">Student's Name</label>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="inputFirstName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="firstname.invalid && (firstname.touched || firstname.dirty)">
+                      <input class="form-control" formControlName = "firstname" type="text" id="inputFirstname" placeholder="Firstname" size="45">
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('required', 'firstname')">
+                          Firstname is required.
+                      </span>
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('minlength', 'firsname')">
+                          Min. length is four letters.
+                      </span>
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="inputLastname" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="lastname.invalid && (lastname.touched || lastname.dirty)">
+                      <input class="form-control" formControlName = "lastname" type="text" id="inputLastname" placeholder="Lastname" size="45">
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('required', 'lastname')">
+                          Lastname is required.
+                      </span>
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('minlength', 'lastname')">
+                          Min. length is four letters.
+                      </span>
+                    </label>
+                  </div>
+              </div>
+
+            <!-- Username block -->
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <label for="username" class="detailHeading">Username</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <input type="text" id="username" size="35" readonly value={{existingStudentDetail?.username}}>
+              </div>
+            </div>
+
+            <!-- Email Block -->
+            <div class="form-group row">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <label for="inputEmail" class="control-label required detailHeading">Email</label>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
+                  <label for="inputEmail" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="email.invalid && (email.touched || email.dirty)">
+                      <input class="form-control" formControlName = "email" type="text" id="inputEmail" placeholder="Student's Email" size="35">
+                      
+                      <!-- Email error block -->
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('required', 'email')">
+                        Email is required.
+                      </span>
+                      <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('pattern', 'email')">
+                          The email id doesn't seem right.
+                      </span>
+
+                  </label>
+                </div>
+            </div>
+
+
+            <!--Select Course Block -->
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <label for="course" class="detailHeading">Course</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <input type="text" id="course" size="35" readonly value={{existingStudentDetail?.course}}>
+              </div>
+            </div>
+
+            <!--Select Batch Block -->
+            <div class="form-group row">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <label for="batch" class="detailHeading">Batch</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                      <input type="text" id="batch" size="35" readonly value={{existingStudentDetail?.batch}}>
+                </div>
+            </div>
+
+            <!-- Password block -->
+            <div class="form-group row">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <label for="password" class="required detailHeading">Password</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
+                  <label for="inputPassword" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="password.invalid && (password.touched || password.dirty)">
+                    <input type="password" formControlName = "password" id="inputPassword" placeholder="Default password for student" size="35">
+                    <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('required', 'password')">
+                        Password is required. Use default as: password
+                    </span>
+                    <span class="tooltip-content" *ngIf = "studentUpdateForm.hasError('minlength', 'password')">
+                        Min. length is eight letters.
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+
+              <span></span>
+            
+            <!-- Buttons Block -->
+              <div class="row flex-items-xs-center" >
+                <div class="col-lg-6 offset-lg-3 col-md-4 offset-md-4 col-sm-12 col-xs-12">
+                  <button [disabled] = "!studentUpdateForm.valid" type="submit" class="btn btn-primary">Update</button>
+                  <button type="button" class="btn btn-danger" [routerLink]="['/student']">Cancel</button>
+                </div>
+              </div>
+          </section>
+        </form>
+
+<!--- Log the FormGroup values to see if the binding is working -->
+    <!-- <p>Form value {{ studentUpdateForm.value | json }} </p>
+    <p> Form status {{ studentUpdateForm.status | json}} </p> -->
+
+      </div>
+    </div>
+  </div>
+</div>

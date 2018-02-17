@@ -1,0 +1,5 @@
+<div *ngIf="shouldShowErrors()">
+	<span class="tooltip-content">
+		<span *ngFor="let error of listOfErrors()" class="error-text">{{error}}</span>
+	</span>
+</div>

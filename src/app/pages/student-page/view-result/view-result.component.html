@@ -1,3 +1,53 @@
-<p>
-  view-result works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Result</h1>
+    <p></p>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+      
+        <!-- Search Form -->
+        <section class="form-block">                                                   
+            <div class="form-group row">
+                <div class="col-lg-3 offset-lg-2">
+                    <label>Select Semester</label>
+                </div>
+                <div class="col-lg-3">  
+                    <div class="select form-control" >
+                        <select id="semesterSelect" #semester>
+                            <option *ngFor="let sem of enrolledSemList">{{sem}}</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="getResult(semester.value)" class="btn btn-primary btn-sm search">
+                    <clr-icon shape="search"></clr-icon> GO!!
+                </button>
+            </div>
+        </section>
+
+        <!-- Data Table -->
+        <table class="table table-compact" *ngIf="results">
+          <thead>
+              <tr>
+                  <th class="left">Subject ID</th>
+                  <th>Subject</th>
+                  <th>Semester</th>
+                  <th>Total Marks</th>
+                  <th class="left">Marks Obtained</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let markRecord of results ">
+                  <td>{{markRecord?.subjectId}}</td>
+                  <td>{{markRecord?.subjectName}}</td>
+                  <td>{{markRecord?.semester}}</td>
+                  <td>100</td>
+                  <td>{{markRecord?.marks}}</td>
+              </tr>
+          </tbody>
+      </table>
+      
+          
+      </div>
+    </div>
+  </div>
+</div>
