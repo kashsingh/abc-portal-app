@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from '../../admin.service';
 import { Subscription } from 'rxjs/Subscription';
-import { IMarks, IUpdatedMarks, ISubjectMarksList } from '../../../../shared/_models/interfaces';
+import { IMarks, IUpdatedMarks, ISubjectMarksList, IStudentUser } from '../../../../shared/_models/interfaces';
 import { FormGroup, Validators, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { AlertService } from '../../../../shared/_services/index';
 
@@ -20,6 +20,7 @@ export class StudentMarksUpdateComponent implements OnInit, OnDestroy {
 
   studentId: number;
   semester: number;
+  student: IStudentUser;
   apiRequest: ISubjectMarksList = {} as any;;
 
   marksUpdateForm: FormGroup;
@@ -35,6 +36,12 @@ export class StudentMarksUpdateComponent implements OnInit, OnDestroy {
         this.existingSemesterMarks = selectedSemesterMarks;
         this.semester = selectedSemesterMarks[0].semester;
         this.studentId = selectedSemesterMarks[0].studentId;
+        this.adminService.getStudent(this.studentId)
+          .subscribe(
+            data => {
+              this.student = data;
+            }
+          );
       }
     );
 

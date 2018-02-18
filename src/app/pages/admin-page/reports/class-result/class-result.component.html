@@ -1,3 +1,83 @@
-<p>
-  class-result works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Class Result</h1>
+    <p></p>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        
+        <!-- Search Form -->
+        <section class="form-block">                                                   
+            <div class="form-group row">
+                <div class="col-lg-2">
+                    <label>Select Class </label>
+                </div>
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #course>
+                            <option>MEC</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #batch>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                  <label>Threshold</label>
+                </div>
+                <div class="col-lg-2">
+                  <input type="text" placeholder="%" size="4" #threshold value=0/>
+                </div>
+                <button type="submit" (click)="getClassResult(course.value, batch.value, threshold.value)" class="btn btn-primary btn-sm search">
+                    <clr-icon shape="search"></clr-icon> Search
+                </button>
+            </div>
+        </section>
+                 
+      </div>
+    </div>
+
+    <!-- Result doesn't exist error -->
+    <div class="row" *ngIf="errorMessage">
+      <div class="col-lg-6 offset-lg-4">  
+        <h5 class="error" >{{errorMessage}}</h5>
+      </div>
+    </div> 
+    
+    <!-- Data Grid -->    
+    <div class="row" *ngIf="classResult">
+      <div class="col-lg-10 offset-lg-1">  
+        <clr-datagrid *ngIf="classResult">
+          <clr-dg-column>Student ID</clr-dg-column>
+          <clr-dg-column>Student Name</clr-dg-column>
+          <clr-dg-column>Course</clr-dg-column>
+          <clr-dg-column>Batch</clr-dg-column>
+          <clr-dg-column>Current Semester</clr-dg-column>
+          <clr-dg-column>Percentage</clr-dg-column>
+
+          <clr-dg-row *clrDgItems="let result of classResult">
+              <clr-dg-cell class="table-data">{{result?.student?.studentId}}</clr-dg-cell>
+              <clr-dg-cell class="table-data">{{result?.student?.firstname}} {{result?.student?.lastname}}</clr-dg-cell>
+              <clr-dg-cell class="table-data">{{result?.student?.course}}</clr-dg-cell>
+              <clr-dg-cell class="table-data">{{result?.student.batch}}</clr-dg-cell>
+              <clr-dg-cell class="table-data">{{result?.student.currentSemester}}</clr-dg-cell>
+              <clr-dg-cell class="table-data">{{result?.percentage}}</clr-dg-cell>
+          </clr-dg-row>
+      
+          <clr-dg-footer>{{classResult.length}} students</clr-dg-footer>
+      </clr-datagrid>
+      </div>
+    </div> 
+
+  </div>
+</div>
+  
+
+  

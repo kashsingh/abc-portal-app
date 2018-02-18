@@ -1,3 +1,81 @@
-<p>
-  scoring-subjects works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Class Topper</h1>
+    <p></p>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        
+        <!-- Search Form -->
+        <section class="form-block">                                                   
+            <div class="form-group row">
+                <div class="col-lg-2 offset-lg-3">
+                    <label>Select Class </label>
+                </div>
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #course>
+                            <option>MEC</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="findScoringSubjects(course.value)" class="btn btn-primary btn-sm search">
+                    <clr-icon shape="search"></clr-icon> Search
+                </button>
+            </div>
+        </section>
+        
+        <!-- Subjects doesn't exist error -->
+        <div class="col-lg-8 offset-lg-3">  
+            <h5 class="error" *ngIf="noMarksRecordFound">No marks record found for the course.</h5>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" *ngIf="scoringSubjects">
+        <div class="col-lg-4 offset-lg-2">
+          <h5><b>Highest Scoring Subject</b></h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="left">Subject ID</th>
+                        <th>Subject Name</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">{{scoringSubjects?.high?.id}}</td>
+                        <td>{{scoringSubjects?.high?.subject_name}}</td>
+                        <td>{{scoringSubjects?.high?.course}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+          <h5><b>Lowest Scoring Subject</b></h5>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th class="left">Subject ID</th>
+                      <th>Subject Name</th>
+                      <th>Course</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="left">{{scoringSubjects?.low?.id}}</td>
+                      <td>{{scoringSubjects?.low?.subject_name}}</td>
+                      <td>{{scoringSubjects?.low?.course}}</td>                                        
+                  </tr>                
+              </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+    
+  
+    

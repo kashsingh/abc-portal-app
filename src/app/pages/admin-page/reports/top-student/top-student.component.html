@@ -1,3 +1,71 @@
-<p>
-  top-student works!
-</p>
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <h1 align=center class="strong">Class Topper</h1>
+    <p></p>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        
+        <!-- Search Form -->
+        <section class="form-block">                                                   
+            <div class="form-group row">
+                <div class="col-lg-2 offset-lg-2">
+                    <label>Select Class </label>
+                </div>
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #course>
+                            <option>MEC</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="courseSelect" #batch>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="findTopper(course.value, batch.value)" class="btn btn-primary btn-sm search">
+                    <clr-icon shape="search"></clr-icon> Search
+                </button>
+            </div>
+        </section>
+        
+        <!-- Topper doesn't exist error -->
+        <div class="col-lg-6 offset-lg-3">  
+            <h5 class="error" *ngIf="noTopperFound">Class topper doesn't exists.</h5>
+        </div>
+
+        <!-- Topper Student Details -->
+        <table class="table table-compact" *ngIf="report">
+            <thead>
+                <tr>
+                    <th class="centre">Student ID</th>
+                    <th class="center">Student Name</th>                  
+                    <th class="center">Course</th>
+                    <th class="center">Batch</th>                                    
+                    <th class="center">Percentage</th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{report?.student?.studentId}}</td>
+                    <td>{{report?.student?.firstname}} {{report?.student?.lastname}}</td>
+                    <td>{{report?.student?.course}}</td>
+                    <td>{{report?.student?.batch}}</td>
+                    <td>{{report?.percentage}}</td>                    
+                </tr>
+            </tbody>
+        </table>
+            
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  

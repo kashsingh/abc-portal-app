@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IStudentUser, ICourseSubject, IApiResponse, IMarks } from "../../shared/_models/interfaces";
+import { IStudentUser, ICourseSubject, IApiResponse, IMarks, IReportStudent, IReportScoringSubjects } from "../../shared/_models/interfaces";
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
@@ -82,12 +82,34 @@ export class AdminService {
                 );
     }
 
-    deleteSubject(id: number){
-        return this.http.delete(this.baseUrl + 'subject/' + id + '/delete');
+    deleteSubject(id: number): Observable<boolean>{
+        return this.http.delete<IApiResponse>(this.baseUrl + 'subject/' + id + '/delete')
+                .pipe(
+                    map(res => res.status),
+                    catchError(this.handleError)
+                );
     }
 
-    updateMarks(subjectMarks: any, id: number, sem: number) {
-        return this.http.post(this.baseUrl + 'student/'+id+'/semester/'+sem+'/update-marks', subjectMarks);
+    updateMarks(subjectMarks: any, id: number, sem: number): Observable<boolean> {
+        return this.http.post<IApiResponse>(this.baseUrl + 'student/'+id+'/semester/'+sem+'/update-marks', subjectMarks)
+                .pipe(
+                    map(res => res.status),
+                    catchError(this.handleError)
+                );
+    }
+
+    getTopperReport(course: string, batch: string): Observable<IReportStudent>{
+        return this.http.get<IReportStudent>(this.baseUrl + 'report/course/'+course+'/batch/'+batch+'/topper');
+    }
+
+    getScoringSubjectReport(course: string): Observable<IReportScoringSubjects>{
+        return this.http.get<IReportScoringSubjects>(this.baseUrl + 'report/course/'+course+'/scoring-subjects');
+    }
+
+    getClassResultReport(course: string, batch: string, threshold: number): Observable<IReportStudent[]>{
+        return this.http.get<IReportStudent[]>(
+            this.baseUrl + 'report/course/'+course+'/batch/'+batch+'/class-result/th/'+threshold
+        );
     }
 
     private handleError(error: HttpErrorResponse) {

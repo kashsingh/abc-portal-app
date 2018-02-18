@@ -32,10 +32,6 @@ export interface IMarks {
     subjectName: string
 }
 
-export interface IReportScoringSubjects {
-    
-}
-
 export interface IUpdatedMarks {
     subjectId: string;
     marks: string;
@@ -48,4 +44,14 @@ export interface ISubjectMarksList {
 export interface IApiResponse {
     status: boolean;
     error?: string;
+}
+
+export interface IReportStudent {
+    student: IStudentUser;
+    percentage: number;
+}
+
+export interface IReportScoringSubjects {
+    high: ICourseSubject;
+    low: ICourseSubject;
 }

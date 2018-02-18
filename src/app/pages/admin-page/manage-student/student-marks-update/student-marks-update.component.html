@@ -4,6 +4,28 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
 
+        <!-- Data Table -->
+        <table class="table table-compact">
+            <thead>
+                <tr>
+                    <th class="centre">Student ID</th>
+                    <th class="center">Student Name</th>                  
+                    <th class="center">Course</th>
+                    <th class="center">Batch</th>                                    
+                    <th class="center">Semester Marks</th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{studentId}}</td>
+                    <td>{{student?.firstname}} {{student?.lastname}}</td>
+                    <td>{{student?.course}}</td>
+                    <td>{{student?.batch}}</td>
+                    <td>{{semester}}</td>                    
+                </tr>
+            </tbody>
+        </table>
+
           <!-- Main Marks View -->
           <clr-stack-view>
               <clr-stack-header>

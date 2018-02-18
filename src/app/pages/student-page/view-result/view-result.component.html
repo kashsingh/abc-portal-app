@@ -6,7 +6,7 @@
       <div class="col-lg-8 offset-lg-2">
       
         <!-- Search Form -->
-        <section class="form-block">                                                   
+        <section class="form-block" *ngIf="enrolledSemList.length>0">                                                   
             <div class="form-group row">
                 <div class="col-lg-3 offset-lg-2">
                     <label>Select Semester</label>
@@ -44,8 +44,11 @@
                   <td>{{markRecord?.marks}}</td>
               </tr>
           </tbody>
-      </table>
-      
+        </table>
+
+        <div class="col-lg-6 offset-lg-4">
+        <h5 class="error"*ngIf="enrolledSemList.length===0">You haven't enrolled yet.</h5>
+        </div>
           
       </div>
     </div>
