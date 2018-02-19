@@ -22,7 +22,7 @@ Student User - goku:password
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-#### Note: You can try the backend client created using Spring Boot and Spring Security for the application [here].(https://github.com/kashsingh/abc-portal-app).
+#### Note: You can try the backend client created using Spring Boot and Spring Security for the application [here](https://github.com/kashsingh/abc-portal-app).
 
 
 ## Further help
