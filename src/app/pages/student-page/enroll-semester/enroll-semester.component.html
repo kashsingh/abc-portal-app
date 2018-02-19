@@ -7,7 +7,7 @@
         <div class="available-subjects">
           <h6>Select the subjects you want to enroll:</h6>
 
-          <clr-datagrid class="datagrid-compact" [(clrDgSelected)]="selectedSubjects" [clDgRowSelection]="true">
+          <clr-datagrid class="datagrid-compact subjects-data" [(clrDgSelected)]="selectedSubjects" [clDgRowSelection]="true">
               <clr-dg-column>Subject ID</clr-dg-column>
               <clr-dg-column>
                 Subject Name
@@ -38,11 +38,15 @@
                 <div class="card-block">
                     <h5 class="card-title">
                       Selected Subjects
-                      <clr-signpost>
-                          <clr-signpost-content [clrPosition]="'top-left'" *clrIfOpen="toolTipState">
-                              <p class="tooltip-error">You need to select atleast four and a max. of six subjects.</p>
-                          </clr-signpost-content>
-                      </clr-signpost>
+                      <!-- <clr-signpost class="tip">
+                        <clr-signpost-content [clrPosition]="'top-right'" *clrIfOpen="toolTipState">
+                            <p class="tooltip-error">You need to select atleast four and a max. of six subjects.</p>
+                        </clr-signpost-content>
+                      </clr-signpost> -->
+                      <a href="..." role="tooltip" aria-haspopup="true" class="tooltip tooltip-md">
+                          <clr-icon shape="info-circle" size="24"></clr-icon>
+                          <span class="tooltip-content">You need to select atleast four and a max. of six subjects.</span>
+                      </a>
                     </h5>
 
                     <div class="card-text">

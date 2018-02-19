@@ -6,7 +6,15 @@
         <label for="tabOverview">Overview</label>
       </section>
 
-      <section class="nav-group collapsible">
+      <section class="nav-group collapsible" *ngFor="let currentLink of pageLinks">
+        <input id="tabElement{{currentLink.viewTitle}}" type="checkbox">
+        <label for="tabElement{{currentLink.viewTitle}}">{{currentLink.viewTitle}}</label>
+        <ul class="nav-list" *ngFor="let sublink of currentLink.sublinks">
+          <li><a [routerLink]="sublink.link" class="nav-link">{{sublink.label}}</a></li>
+        </ul>
+      </section>
+
+      <!-- <section class="nav-group collapsible">
         <input id="tabProfile" type="checkbox">
         <label for="tabProfile">Your Account</label>
         <ul class="nav-list">
@@ -15,7 +23,7 @@
         </ul>
       </section>
 
-      <section class="nav-group collapsible">
+      <section class="nav-group collapsible" *ngIf="isAdmin">
         <input id="tabstudent" type="checkbox">
         <label for="tabstudent">Manage Student</label>
         <ul class="nav-list">
@@ -27,7 +35,7 @@
         </ul>
       </section>
 
-      <section class="nav-group collapsible">
+      <section class="nav-group collapsible" *ngIf="isAdmin">
         <input id="tabCourse" type="checkbox">
         <label for="tabCourse">Manage Courses</label>
         <ul class="nav-list">
@@ -37,7 +45,7 @@
         </ul>
       </section>
 
-      <section class="nav-group collapsible">
+      <section class="nav-group collapsible" *ngIf="isAdmin">
           <input id="tabReports" type="checkbox">
           <label for="tabReports">Reports</label>
           <ul class="nav-list">
@@ -45,8 +53,6 @@
             <li><a class="nav-link">Report 2</a></li>
             <li><a class="nav-link">Report 3</a></li>
           </ul>
-        </section>
-
-      <a href="#" class="nav-link">Logout</a>
+        </section> -->
     </section>
   </nav>

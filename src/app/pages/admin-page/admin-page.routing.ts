@@ -14,20 +14,23 @@ import { AdminMenuComponent } from "./admin-menu/admin-menu.component";
 import { TopStudentComponent } from './reports/top-student/top-student.component';
 import { ScoringSubjectsComponent } from './reports/scoring-subjects/scoring-subjects.component';
 import { ClassResultComponent } from './reports/class-result/class-result.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 const routes: Routes = [
 	{ 
 	    path: '',
         children: [ 
-            //Main Menu Path
+            // Main Menu Path
             { path: '', component: AdminMenuComponent, pathMatch: "full" },
+            // Admin Profile
+            { path: 'profile', component: AdminProfileComponent},
             // Manage Course Path
             {
                 path: 'course',
                 children: [
                     { path: '', pathMatch: 'full', component: ManageCourseComponent },
-                    { path: 'create', component: SubjectCreateComponent },
-                    { path: 'view/allsubjects', component: ViewSubjectsComponent },
+                    { path: 'create-subject', component: SubjectCreateComponent },
+                    { path: 'all-subjects', component: ViewSubjectsComponent },
                 ]
             },
             // Manage Student Path

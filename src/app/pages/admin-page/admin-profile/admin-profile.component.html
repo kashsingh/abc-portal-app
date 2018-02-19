@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="w3-container w3-border w3-round-xlarge">
+    <div class="row flex-items-xs-center">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          <div class="card" *ngIf="currentUser">
+            
+              <div class="card-header">
+                  <h1 align=center class="strong">{{currentUser?.firstname}} {{currentUser?.lastname}}</h1>
+              </div>
+              <div class="card-block">
+
+                  <div class="card-media-block center" >
+                      <img src="assets/images/user-image.png" class="card-media-image">
+                      <div class="card-media-description">
+                          <span class="card-media-title">
+                            <b>Username: </b>{{currentUser?.username}}
+                          </span>
+                          <span class="card-media-text">
+                              Admin
+                          </span>
+                      </div>
+                  </div>
+
+                  <div class="card-text">
+                    <table class="table table-user-information">
+                      <tbody>
+                        <tr>
+                          <td>User ID</td>
+                          <td>{{currentUser?.userId}}</td>
+                        </tr>
+                        <tr>
+                          <td>Email</td>
+                          <td><a href="mailto:{{currentUser?.email}}">{{currentUser?.email}}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                  </div>
+
+              </div>
+              <div class="card-footer">
+                This is the only admin user present by default. Need to implement super admin to add admin users.
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

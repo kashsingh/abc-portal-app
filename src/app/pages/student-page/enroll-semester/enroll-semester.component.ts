@@ -21,7 +21,7 @@ export class EnrollSemesterComponent implements OnInit {
   selectedSubjects: ICourseSubject[] = [];
   availableSubjectsToEnroll: ICourseSubject[] = [];
   enrollSubjectsForm: FormGroup;
-  toolTipState = false;
+  toolTipState:boolean = true;
   enrollingSemester: number;
   subjectFilter = new SubjectFilter();
 
@@ -82,8 +82,8 @@ export class EnrollSemesterComponent implements OnInit {
             }
           );
       } else {
-        this.toolTipState = true;
         this.alertService.error('Please check the tooltip and enroll within specified limit of subjects.');
+        this.toolTipState = true;
       }
     } else{
       this.alertService.error("You have already enrolled for eight semesters.");

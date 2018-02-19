@@ -1,5 +1,11 @@
 .sidebar{
     /* background: #BBB3A9; */
     background: #C1CDD4;
-    min-height: 600px;
+    min-height: 700px;
+    /* position: fixed; */
+    overflow-y: auto;
+}
+
+.sidenav-content:hover {
+    overflow-y: auto;    
 }

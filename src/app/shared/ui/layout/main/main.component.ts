@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-// import { AuthenticationService } from '../../../_services/index';
-// import { Observable } from 'rxjs/Observable';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -9,12 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent {
   
-  // isLoggedIn: Observable<boolean>;
-
-  ngOnInit(){
-    // this.isLoggedIn = this.auth.isAuthenticated();
-  }
-
-
-  // constructor(public auth: AuthenticationService) { }
 }

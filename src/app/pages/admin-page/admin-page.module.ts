@@ -24,6 +24,7 @@ import { JwtInterceptor } from '../../shared/_guards/jwt.interceptor';
 import { AuthenticationService,  } from '../../shared/_services/index';
 import { MarksValidatorDirective } from './manage-student/student-marks-update/marks-validator.directive';
 import { ShowErrorsComponent } from './manage-student/student-marks-update/show-errors/show-errors.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { ShowErrorsComponent } from './manage-student/student-marks-update/show-
     ScoringSubjectsComponent,
     ClassResultComponent,
     AdminMenuComponent,
+    AdminProfileComponent,
   ],
   providers: [
     AdminService,

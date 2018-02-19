@@ -6,3 +6,12 @@
 .error {
     color: red;
 }
+
+.table-data{
+    position:relative;
+    bottom: -4px;
+}
+
+.result-data{
+    height: 375px;
+}

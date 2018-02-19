@@ -14,7 +14,6 @@ export class HeaderComponent {
 
   headerLinks = [
     { link: ['/', 'admin'], icon: 'home'},
-    { link: ['/', 'settings'], icon: 'cog'},
   ]; 
 
   subLinks = [
@@ -35,7 +34,6 @@ export class HeaderComponent {
       if( this.userType === 'student'){
         this.headerLinks = [
           { link: ['/', 'student'], icon: 'home'},
-          { link: ['/', 'settings'], icon: 'cog'},
         ];
         this.subLinks = [
           { link : ['/', 'student'], label: 'Dashboard' }
