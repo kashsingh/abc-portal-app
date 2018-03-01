@@ -60,7 +60,7 @@
           <clr-dg-column>Course</clr-dg-column>
           <clr-dg-column>Batch</clr-dg-column>
           <clr-dg-column>Current Semester</clr-dg-column>
-          <clr-dg-column>Percentage</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="percentageComparator" [clrDgSortOrder]="preSorted">Percentage</clr-dg-column>
 
           <clr-dg-row *clrDgItems="let result of classResult">
               <clr-dg-cell class="table-data">{{result?.student?.studentId}}</clr-dg-cell>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin.service';
 import { IReportStudent } from '../../../../shared/_models/interfaces';
+import {ClrDatagridComparatorInterface} from "@clr/angular";
+import {SortOrder} from '@clr/angular';
 
 @Component({
   selector: 'app-class-result',
@@ -11,6 +13,8 @@ export class ClassResultComponent {
 
   errorMessage: string;
   classResult: IReportStudent[];
+  percentageComparator = new PercentageComparator();
+  preSorted = SortOrder.Desc;
 
   constructor( private adminService: AdminService ) { }
 
@@ -32,6 +36,10 @@ export class ClassResultComponent {
               );
       }
   }
-  
+}
 
+class PercentageComparator implements ClrDatagridComparatorInterface<IReportStudent> {
+  compare(a: IReportStudent, b: IReportStudent) {
+      return a.percentage - b.percentage;
+  }
 }
