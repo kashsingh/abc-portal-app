@@ -36,9 +36,11 @@
         </section>
         
         <!-- Topper doesn't exist error -->
-        <div class="col-lg-6 offset-lg-3">  
-            <h5 class="error" *ngIf="noTopperFound">Class topper doesn't exists.</h5>
-        </div>
+        <div class="row" *ngIf="errorMessage">
+            <div class="col-lg-6 offset-lg-4">  
+                <h5 class="error" >{{errorMessage}}</h5>
+            </div>
+        </div> 
 
         <!-- Topper Student Details -->
         <table class="table table-compact" *ngIf="report">

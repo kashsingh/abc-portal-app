@@ -1,15 +1,15 @@
 <div class="container">
   <div class="w3-container w3-border w3-round-xlarge">
-    <h1 align=center class="strong">Class Topper</h1>
+    <h1 align=center class="strong">Scoring Subjects</h1>
     <p></p>
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
         
         <!-- Search Form -->
         <section class="form-block">                                                   
-            <div class="form-group row">
-                <div class="col-lg-3 offset-lg-2">
-                    <label>Select Course</label>
+            <div class="form-group row flex-items-xs-center">
+                <div class="col-lg-2">
+                    <label>Select Class </label>
                 </div>
                 <div class="col-lg-2">  
                     <div class="select form-control">
@@ -20,16 +20,28 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" (click)="findScoringSubjects(course.value)" class="btn btn-primary btn-sm search">
+                <div class="col-lg-2">  
+                    <div class="select form-control">
+                        <select id="batchSelect" #batch>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                        </select>
+                    </div>
+                </div>
+            <!-- </div> -->
+                <button type="submit" (click)="findScoringSubjects(course.value, batch.value)" class="btn btn-primary btn-sm search">
                     <clr-icon shape="search"></clr-icon> Search
                 </button>
             </div>
         </section>
         
         <!-- Subjects doesn't exist error -->
-        <div class="col-lg-8 offset-lg-3">  
-            <h5 class="error" *ngIf="noMarksRecordFound">No marks record found for the course.</h5>
-        </div>
+        <div class="row" *ngIf="errorMessage">
+            <div class="col-lg-6 offset-lg-3">  
+                <h5 class="error" >{{errorMessage}}</h5>
+            </div>
+        </div> 
 
       </div>
     </div>
@@ -42,14 +54,14 @@
                     <tr>
                         <th class="left">Subject ID</th>
                         <th>Subject Name</th>
-                        <th>Course</th>
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="left">{{scoringSubjects?.high?.id}}</td>
-                        <td>{{scoringSubjects?.high?.subject_name}}</td>
-                        <td>{{scoringSubjects?.high?.course}}</td>
+                        <td class="left">{{scoringSubjects?.high?.subjectId}}</td>
+                        <td>{{scoringSubjects?.high?.subjectName}}</td>
+                        <td>{{scoringSubjects?.high?.averageMarks}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -61,14 +73,14 @@
                   <tr>
                       <th class="left">Subject ID</th>
                       <th>Subject Name</th>
-                      <th>Course</th>
+                      <th>Score</th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
-                      <td class="left">{{scoringSubjects?.low?.id}}</td>
-                      <td>{{scoringSubjects?.low?.subject_name}}</td>
-                      <td>{{scoringSubjects?.low?.course}}</td>                                        
+                    <td class="left">{{scoringSubjects?.low?.subjectId}}</td>
+                    <td>{{scoringSubjects?.low?.subjectName}}</td>
+                    <td>{{scoringSubjects?.low?.averageMarks}}</td>                                        
                   </tr>                
               </tbody>
           </table>

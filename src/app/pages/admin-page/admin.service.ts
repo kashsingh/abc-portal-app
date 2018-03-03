@@ -102,8 +102,8 @@ export class AdminService {
         return this.http.get<IReportStudent>(this.baseUrl + 'report/course/'+course+'/batch/'+batch+'/topper');
     }
 
-    getScoringSubjectReport(course: string): Observable<IReportScoringSubjects>{
-        return this.http.get<IReportScoringSubjects>(this.baseUrl + 'report/course/'+course+'/scoring-subjects');
+    getScoringSubjectReport(course: string, batch: string): Observable<IReportScoringSubjects>{
+        return this.http.get<IReportScoringSubjects>(this.baseUrl+'report/course/'+course+'/batch/'+batch+'/scoring-subjects');
     }
 
     getClassResultReport(course: string, batch: string, threshold: number): Observable<IReportStudent[]>{

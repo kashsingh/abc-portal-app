@@ -9,6 +9,7 @@ import { IReportScoringSubjects } from '../../../../shared/_models/interfaces';
 })
 export class ScoringSubjectsComponent {
 
+  errorMessage: string;
   scoringSubjects: IReportScoringSubjects;
   noMarksRecordFound: boolean;
 
@@ -16,15 +17,15 @@ export class ScoringSubjectsComponent {
     private adminService: AdminService
   ) { }
 
-  findScoringSubjects(course: string){
-    this.adminService.getScoringSubjectReport(course)
+  findScoringSubjects(course: string, batch: string){
+    this.adminService.getScoringSubjectReport(course, batch)
           .subscribe(
             data => {
               this.scoringSubjects = data;
-              this.noMarksRecordFound = false;
+              this.errorMessage = undefined;
             }, 
             err => {
-              this.noMarksRecordFound = true;
+              this.errorMessage = err.error.message;
               this.scoringSubjects = undefined;
             }
           );

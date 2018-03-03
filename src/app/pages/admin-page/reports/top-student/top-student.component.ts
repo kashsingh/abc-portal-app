@@ -11,7 +11,7 @@ import { AlertService } from '../../../../shared/_services';
 export class TopStudentComponent {
 
   report: IReportStudent;
-  noTopperFound: boolean;
+  errorMessage: string;
 
   constructor(
     private adminService: AdminService,
@@ -22,15 +22,11 @@ export class TopStudentComponent {
     this.adminService.getTopperReport(course,batch).subscribe(
       data => {
         this.report = data;
-        this.noTopperFound = false;
+        this.errorMessage = undefined;
       },
       err => {
-        if(err.error.message === "Class topper doesn't exists."){
-            this.noTopperFound = true;
-            this.report = undefined;
-        } else{
-          this.alertService.error(err.error.message);
-        }
+        this.report = undefined;
+        this.errorMessage = err.error.message;
       }
     );
   }

@@ -52,7 +52,14 @@ export interface IReportStudent {
     percentage: number;
 }
 
+export interface ISubjectScore{
+    subjectId : number,
+    subjectName : string,
+    courseId : number,
+    averageMarks : number
+}
+
 export interface IReportScoringSubjects {
-    high: ICourseSubject;
-    low: ICourseSubject;
+    high: ISubjectScore;
+    low: ISubjectScore;
 }

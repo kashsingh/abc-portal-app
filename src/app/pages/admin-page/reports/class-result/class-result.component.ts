@@ -26,12 +26,11 @@ export class ClassResultComponent {
               .subscribe(
                 data => {
                   this.classResult = data;
-                  // console.log(data)
                   this.errorMessage = undefined;
                 },
                 err => {
                   this.classResult = undefined;
-                  this.errorMessage = "No student found above this threshold.";
+                  this.errorMessage = err.error.message;
                 }
               );
       }
