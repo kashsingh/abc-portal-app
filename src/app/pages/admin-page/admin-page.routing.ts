@@ -21,46 +21,50 @@ const routes: Routes = [
 	    path: '',
         children: [ 
             // Main Menu Path
-            { path: '', component: AdminMenuComponent, pathMatch: "full" },
+            { path: '', component: AdminMenuComponent, pathMatch: "full", data: {depth: 2} },
+
             // Admin Profile
-            { path: 'profile', component: AdminProfileComponent},
+            { path: 'profile', component: AdminProfileComponent, data: {depth: 3}},
+
             // Manage Course Path
             {
                 path: 'course',
                 children: [
-                    { path: '', pathMatch: 'full', component: ManageCourseComponent },
-                    { path: 'create-subject', component: SubjectCreateComponent },
-                    { path: 'all-subjects', component: ViewSubjectsComponent },
+                    { path: '', pathMatch: 'full', component: ManageCourseComponent, data: {depth: 3} },
+                    { path: 'create-subject', component: SubjectCreateComponent, data: {depth: 4} },
+                    { path: 'all-subjects', component: ViewSubjectsComponent, data: {depth: 4} },
                 ]
             },
+
             // Manage Student Path
             {
                 path: 'student',
                 children: [
-                    { path: '', pathMatch: 'full', component: ManageStudentComponent },
-                    { path: 'create', component: StudentCreateComponent },
+                    { path: '', pathMatch: 'full', component: ManageStudentComponent, data: {depth: 3} },
+                    { path: 'create', component: StudentCreateComponent, data: {depth: 4} },
                     { path: 'view', 
                       children: [
                             {   path: '', pathMatch: 'full', redirectTo: '/admin/student' },
                             {   path: ':student-id',
                                 children: [
-                                    { path: '', component: ViewStudentComponent, pathMatch: 'full' },
-                                    { path: 'edit', component: StudentUpdateComponent },
-                                    { path: 'update-marks', component: StudentMarksUpdateComponent }
+                                    { path: '', component: ViewStudentComponent, pathMatch: 'full', data: {depth: 4} },
+                                    { path: 'edit', component: StudentUpdateComponent, data: {depth: 4} },
+                                    { path: 'update-marks', component: StudentMarksUpdateComponent, data: {depth: 4} }
                             ]
                             }
                         ]
                     }                    			   
                 ]
             },
+
             // Reports Path
             {
                 path: 'reports',
                 children: [
-                    { path: '', pathMatch: 'full', component: ReportsComponent },
-                    { path: 'top-student', component: TopStudentComponent},
-                    { path: 'scoring-subjects', component: ScoringSubjectsComponent },
-                    { path: 'class-result', component: ClassResultComponent}
+                    { path: '', pathMatch: 'full', component: ReportsComponent, data: {depth: 3} },
+                    { path: 'top-student', component: TopStudentComponent, data: {depth: 4} },
+                    { path: 'scoring-subjects', component: ScoringSubjectsComponent, data: {depth: 4} },
+                    { path: 'class-result', component: ClassResultComponent, data: {depth: 4} }
                 ]
                 
             }	

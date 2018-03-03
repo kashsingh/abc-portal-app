@@ -11,16 +11,16 @@ const routes: Routes = [
 	{ 
 	    path: '',
         children: [ 
-            { path: '', component: StudentMenuComponent, pathMatch: 'full' },
+            { path: '', component: StudentMenuComponent, pathMatch: 'full', data: {depth: 2} },
             { 
                 path: 'profile', 
                 children: [
-                        { path: '', component: ViewProfileComponent, pathMatch: "full" },
-                        { path: 'edit', component: EditProfileComponent }
+                        { path: '', component: ViewProfileComponent, pathMatch: "full", data: {depth: 3} },
+                        { path: 'edit', component: EditProfileComponent, data: {depth: 4} }
                     ]
             },   
-            { path: 'semester-enroll', component: EnrollSemesterComponent },
-            { path: 'result', component: ViewResultComponent }	
+            { path: 'semester-enroll', component: EnrollSemesterComponent, data: {depth: 3} },
+            { path: 'result', component: ViewResultComponent, data: {depth: 3} }	
 	   ]
 	}  
 ];

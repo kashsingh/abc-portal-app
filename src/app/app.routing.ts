@@ -14,12 +14,12 @@ const appRoutes: Routes = [
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', pathMatch: 'full', component: LandingPageComponent},
+      { path: '', pathMatch: 'full', component: LandingPageComponent, data: {depth: 1} },
       { 
         path: 'admin', 
         loadChildren: './pages/admin-page/admin-page.module#AdminPageModule',
         canActivate : [RolesGuard],
-        data : { expectedRole: 'admin'}
+        data : { expectedRole: 'admin', }
       },
       { 
         path: 'student', 
